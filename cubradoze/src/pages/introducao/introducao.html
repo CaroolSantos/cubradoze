@@ -1,0 +1,36 @@
+<ion-content class="back-intro">
+
+    <img *ngIf="!mudarOrdem" class="img-prof" src="assets/imgs/prof2.png">
+
+    <ion-card *ngIf="!mudarOrdem" class="introducao-card">
+        <h1>{{falaProfessor}}</h1>
+    </ion-card>
+
+    <ion-fab right bottom *ngIf="!mudarOrdem" (click)="passarFala()">
+        <button ion-fab icon-only  class="icon-arrow">
+            <ion-icon name="arrow-round-forward"></ion-icon>
+        </button>
+    
+    </ion-fab>
+<!-- 
+    Introdução 2 -->
+
+  <ion-card *ngIf="mudarOrdem" class="introducao-card">
+      <h1>{{falaProfessor}}</h1> 
+
+      <h2>{{falaProfessor2}}</h2>
+  </ion-card>
+
+  <img *ngIf="mudarOrdem" class="img-prof" src="assets/imgs/prof.png">
+
+  <ion-fab right bottom *ngIf="mudarOrdem" (click)="selecionarTime()">
+      <button ion-fab icon-only  class="icon-arrow">
+          <ion-icon name="arrow-round-forward"></ion-icon>
+      </button>
+  
+  </ion-fab>
+
+</ion-content>
+
+
+  
