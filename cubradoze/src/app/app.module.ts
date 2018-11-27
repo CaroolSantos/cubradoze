@@ -15,13 +15,15 @@ import { ConexaoProvider } from '../providers/conexao/conexao';
 import { Network } from '@ionic-native/network';
 import { IonicStorageModule } from '@ionic/storage';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { RespostaPage } from '../pages/resposta/resposta';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     IntroducaoPage,
-    DefinicaoTimesPage
+    DefinicaoTimesPage,
+    RespostaPage
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,8 @@ import { NativeAudio } from '@ionic-native/native-audio';
     MyApp,
     HomePage,
     IntroducaoPage,
-    DefinicaoTimesPage
+    DefinicaoTimesPage,
+    RespostaPage
   ],
   providers: [
     StatusBar,

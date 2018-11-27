@@ -10,7 +10,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = IntroducaoPage;
+  rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     public nativeAudio: NativeAudio) {

@@ -6,6 +6,7 @@ import { ConexaoProvider } from '../../providers/conexao/conexao';
 import { Storage } from '@ionic/storage';
 import { NativeAudio } from '@ionic-native/native-audio';
 
+
 /**
  * Generated class for the DefinicaoTimesPage page.
  *
@@ -58,6 +59,7 @@ export class DefinicaoTimesPage {
         alert.present();
       })
     }
+    
     
   }
 

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { RespostaPage } from '../resposta/resposta';
 
 @Component({
   selector: 'page-home',
@@ -40,6 +41,8 @@ export class HomePage {
     }, 200)
 
     this.sorteado = true;
+    this.navCtrl.push(RespostaPage, {num1: this.numero1, num2: this.numero2, num3: this.numero3});
+
     
   }
 
