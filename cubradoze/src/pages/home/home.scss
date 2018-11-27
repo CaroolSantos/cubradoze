@@ -1,3 +1,111 @@
 page-home {
+    .grid-time{
+        height: 25%;
+        background-color: white;
+        padding:0;
+        .numeros{
+            height: 95%;
+            background-color: white;
+        }
+
+        &-azul{
+            position: absolute;
+            bottom:0;
+        }
+    }
+
+    .back{
+        background-color:#d4d4d4;
+    }
+    
+    ion-label{
+        color:black;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    ion-col{
+        height: 100%;
+        border: 2px solid black;
+        font-size: 48px;
+        text-align: center;
+    }
+
+    // .bottom{
+        
+    //     width: 100%;
+    // }
+
+    .vertical-align-content > *
+    {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+        justify-content: center;
+    }
+
+    .marcado{
+        &-azul{
+            background-color:blue;
+            color:white;
+        }
+
+        &-vermelho{
+            background-color: red;
+            color:white;
+        }
+    }
+    .grid-info{
+        height: 50%;
+        ion-row{
+            height: 100%;
+        }
+        ion-col{
+            border:none;
+        }
+        .button:hover {background-color: #3e7ae0}
+
+        .button:active {
+        background-color: #488aff;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+        }
+    }
+
+
+    .time{
+
+        &-span{
+            color:white;
+            background-color:red;
+            padding:10px;
+            border-radius: 10px;
+        }
+
+        width: 100%;
+        // z-index: 2;
+        text-align: center;
+
+        ion-col{
+            font-size: 18px;
+            font-weight: bold;
+            color:white;
+        }
+        
+        &-vermelho{
+            background-color:red;
+            // position: absolute;
+            // top:0;
+            
+        }
+
+        &-azul{
+            background-color: blue;
+            // position: absolute;
+            // bottom: 0;
+         
+        }
+    }
+
 
 }
