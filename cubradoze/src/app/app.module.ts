@@ -8,13 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { RespostaPage } from '../pages/resposta/resposta';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     IntroducaoPage,
-    DefinicaoTimesPage
+    DefinicaoTimesPage,
+    RespostaPage
   ],
   imports: [
     BrowserModule,
@@ -25,7 +27,8 @@ import { HomePage } from '../pages/home/home';
     MyApp,
     HomePage,
     IntroducaoPage,
-    DefinicaoTimesPage
+    DefinicaoTimesPage,
+    RespostaPage
   ],
   providers: [
     StatusBar,

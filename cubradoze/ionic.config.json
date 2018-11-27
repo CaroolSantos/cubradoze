@@ -1,5 +1,7 @@
 {
   "name": "cubradoze",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "ionic-angular"
 }
