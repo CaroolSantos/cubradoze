@@ -6,22 +6,22 @@
   <ion-row>
     <ion-col>
       <ion-list>
-        <h2  style="color:white ">Time 1:</h2>
+        <h2 style="color:white ">Time 1:</h2>
         <ion-item>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="time1"></ion-input>
         </ion-item>
         <br>
-        <h2  style="color:white">Time 2:</h2>
+        <h2 style="color:white">Time 2:</h2>
         <ion-item>
-          <ion-input type="text"></ion-input>
+          <ion-input type="text" [(ngModel)]="time2"></ion-input>
         </ion-item>
 
       </ion-list>
     </ion-col>
   </ion-row>
 
-<br>
-        <button ion-button class="login-button" (click)="acessarJogo()">Começar</button>
+  <br>
+  <button ion-button class="login-button" (click)="acessarJogo()">Começar</button>
 
 
 

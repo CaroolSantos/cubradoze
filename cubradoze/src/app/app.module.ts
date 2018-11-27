@@ -8,6 +8,13 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { PartidaProvider } from '../providers/partida/partida';
+import { JogadaProvider } from '../providers/jogada/jogada';
+import { HttpModule } from '@angular/http';
+import { ConexaoProvider } from '../providers/conexao/conexao';
+import { Network } from '@ionic-native/network';
+import { IonicStorageModule } from '@ionic/storage';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @NgModule({
   declarations: [
@@ -18,7 +25,9 @@ import { HomePage } from '../pages/home/home';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    HttpModule,
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -30,7 +39,12 @@ import { HomePage } from '../pages/home/home';
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    PartidaProvider,
+    JogadaProvider,
+    ConexaoProvider,
+    Network,
+    NativeAudio
   ]
 })
 export class AppModule {}

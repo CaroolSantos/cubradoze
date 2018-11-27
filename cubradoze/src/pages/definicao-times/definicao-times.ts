@@ -1,5 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { HomePage } from '../home/home';
+import { PartidaProvider } from '../../providers/partida/partida';
+import { ConexaoProvider } from '../../providers/conexao/conexao';
+import { Storage } from '@ionic/storage';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 /**
  * Generated class for the DefinicaoTimesPage page.
@@ -14,8 +19,14 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'definicao-times.html',
 })
 export class DefinicaoTimesPage {
+  time1:string;
+  time2:string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public partidaProv: PartidaProvider,
+    public conexaoProv: ConexaoProvider,
+    public storage: Storage,
+    public alertCtrl: AlertController,
+    private nativeAudio: NativeAudio) {
   }
 
   ionViewDidLoad() {
@@ -23,6 +34,30 @@ export class DefinicaoTimesPage {
   }
 
   acessarJogo(){
+    console.log('times',this.time1,this.time2)
+
+    this.storage.set("time1",this.time1);
+    this.storage.set("time2",this.time2);
+
+    if(this.conexaoProv.isOnline()){
+      let partida = {
+        Time1: this.time1,
+        Time2: this.time2
+      }
+      this.partidaProv.salvar(partida).subscribe(novapartida=>{
+        console.log(novapartida);
+        //this.storage.setItem("partida",);
+        this.navCtrl.setRoot(HomePage);
+      },error=>{
+        console.error(error);
+        var alert = this.alertCtrl.create({
+          title: "Ops",
+          subTitle: "Aconteceu algo errado, tente novamente."
+        });
+        this.nativeAudio.play('error', () => console.log('error is done playing'));
+        alert.present();
+      })
+    }
     
   }
 

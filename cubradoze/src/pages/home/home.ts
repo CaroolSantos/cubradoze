@@ -8,6 +8,7 @@ import { NavController } from 'ionic-angular';
 export class HomePage {
   myCount = 6;
   sorteando = false;
+  sorteado = false;
   numero1: number;
   numero2: number;
   numero3: number;
@@ -38,7 +39,12 @@ export class HomePage {
       if (this.myCount == 0) clearInterval(interval);
     }, 200)
 
+    this.sorteado = true;
     
+  }
+
+  responder(){
+    //todo abrir modal
   }
 
 }

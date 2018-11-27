@@ -1,5 +1,8 @@
 page-introducao {
-
+    .scroll-content{
+        display: flex;
+        align-items: center;
+    }
     .introducao-card{
         border-radius: 10px;
         padding:10px;
