@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbA2Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="dbA2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Jogada" EntityType="dbA2Model.Jogada" />
+    <EntitySet Name="Partida" EntityType="dbA2Model.Partida" />
+    <AssociationSet Name="FK_Jogada_IdPartida" Association="dbA2Model.FK_Jogada_IdPartida">
+      <End Role="Partida" EntitySet="Partida" />
+      <End Role="Jogada" EntitySet="Jogada" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Jogada">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Operacoes" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Time" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+    <Property Name="IdPartida" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Partida" Relationship="dbA2Model.FK_Jogada_IdPartida" FromRole="Jogada" ToRole="Partida" />
+  </EntityType>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Time1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Time2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DataRegistro" Type="DateTime" Precision="3" />
+    <Property Name="Vencedor" Type="Boolean" />
+    <NavigationProperty Name="Jogada" Relationship="dbA2Model.FK_Jogada_IdPartida" FromRole="Partida" ToRole="Jogada" />
+  </EntityType>
+  <Association Name="FK_Jogada_IdPartida">
+    <End Type="dbA2Model.Partida" Role="Partida" Multiplicity="1" />
+    <End Type="dbA2Model.Jogada" Role="Jogada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partida">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jogada">
+        <PropertyRef Name="IdPartida" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
