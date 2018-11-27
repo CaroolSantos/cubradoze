@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="dbA2ModelStoreContainer" CdmEntityContainer="dbA2Entities">
+    <EntitySetMapping Name="Jogada">
+      <EntityTypeMapping TypeName="dbA2Model.Jogada">
+        <MappingFragment StoreEntitySet="Jogada">
+          <ScalarProperty Name="IdPartida" ColumnName="IdPartida" />
+          <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+          <ScalarProperty Name="Time" ColumnName="Time" />
+          <ScalarProperty Name="Operacoes" ColumnName="Operacoes" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partida">
+      <EntityTypeMapping TypeName="dbA2Model.Partida">
+        <MappingFragment StoreEntitySet="Partida">
+          <ScalarProperty Name="Vencedor" ColumnName="Vencedor" />
+          <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
+          <ScalarProperty Name="Time2" ColumnName="Time2" />
+          <ScalarProperty Name="Time1" ColumnName="Time1" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

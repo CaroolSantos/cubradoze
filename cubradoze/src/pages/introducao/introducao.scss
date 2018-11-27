@@ -1,0 +1,60 @@
+page-introducao {
+
+    .introducao-card{
+        border-radius: 10px;
+        padding:10px;
+      
+    }
+
+    .img-prof{
+        height: 60%;
+
+    }
+
+    .back-intro{
+        height: 100%;
+        background: -webkit-linear-gradient(rgba(10, 78, 197, 1) 10%, #31a0af 90%);
+        background: -moz-linear-gradient(rgba(10, 78, 197, 1) 10%, #31a0af 90%);
+        background: -o-linear-gradient(rgba(10, 78, 197, 1) 10%, #31a0af 90%);
+        background: linear-gradient(rgba(10, 78, 197, 1) 10%, #31a0af 90%);
+        text-align: center;
+        vertical-align: center;
+    }
+
+    .item-radio{
+        border-radius: 30px;
+        font-size:24px;
+    }
+
+    .selecaoSexo{
+        margin-left: 7%;
+        margin-right: 7%;
+        margin-top: 50%;
+        
+    }
+
+    h2{
+        color: white;
+    }
+    
+    .icon-arrow{
+        margin-bottom: 15px;
+        float: right;
+        justify-content:flex-start;
+        background-color:black;
+    }
+
+    ion-row {
+        align-items: center;
+        text-align: center;
+      }
+      ion-item {
+        border-radius: 30px !important;
+        padding-left: 10px !important;
+        margin-bottom: 10px;
+        background-color: #f6f6f6;
+        opacity: 0.7;
+        font-size: 0.9em;
+      }
+
+}
