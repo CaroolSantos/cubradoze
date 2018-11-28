@@ -55,6 +55,7 @@ export class RespostaPage {
 
     let timer = Observable.timer(2000,1000);
     this.subscription = timer.subscribe(t => this.tickerFunc(t));
+    
     this.nativeAudio.loop("ticking");
   }
 
@@ -64,6 +65,10 @@ export class RespostaPage {
     if(this.ticks == 60){
       console.log('ACABOU O TEMPO');
       this.nativeAudio.play("error");
+      
+      this.nativeAudio.stop("ticking");
+      this.subscription.unsubscribe();
+
       let alert = this.alertCtrl.create({
         title: "Tempo esgotado!",
         subTitle: "Seu tempo de resposta esgotou :( tente na próxima vez.",
@@ -79,8 +84,7 @@ export class RespostaPage {
       });
       alert.present();
 
-      this.nativeAudio.stop("ticking");
-      this.subscription.unsubscribe();
+      
     }
     
   }
@@ -103,17 +107,24 @@ export class RespostaPage {
     var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
     var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
 
+    this.subscription.unsubscribe();
+    this.nativeAudio.stop("ticking");
+
     if(resultado2 == this.resultado){
       this.nativeAudio.play("success");
       console.log('ACERTOU');
+      this.callback(this.resultado).then(() => { 
+        this.navCtrl.pop();
+      });
     }else{
       this.nativeAudio.play("error");
       console.log('ERROU');
+      this.callback(-1).then(() => { 
+        this.navCtrl.pop();
+      });
     }
 
-    this.callback(this.resultado).then(() => { 
-      this.navCtrl.pop();
-    });
+   
   }
 
   calcula(operando1,operacao,operando2){
@@ -137,6 +148,14 @@ export class RespostaPage {
 
   time1marcou(numero){
     return this.time1Numeros.indexOf(numero) > -1;
+  }
+
+  pular(){
+    this.subscription.unsubscribe();
+    this.nativeAudio.stop("ticking");
+    this.callback(-1).then(() => { 
+      this.navCtrl.pop();
+    });
   }
 
 }

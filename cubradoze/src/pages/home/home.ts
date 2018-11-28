@@ -18,9 +18,9 @@ export class HomePage {
   time2:string;
   idPartida:number;
   offline:boolean;
-  timeDaVez:string;
+  timeDaVez:number;
   time1Numeros:number[] = [];
-  time2Numeros:number[] = [1];
+  time2Numeros:number[] = [];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -81,7 +81,19 @@ export class HomePage {
   myCallbackFunction = (_params) => {
     return new Promise((resolve, reject) => {
       console.log('params: ' + JSON.stringify(_params));
-      
+      if(this.timeDaVez == 1){
+        if(parseInt(_params) > -1){
+          this.time1Numeros.push(parseInt(_params));
+        }
+        this.timeDaVez = 2;
+      }else{
+        if(parseInt(_params) > -1){
+          this.time2Numeros.push(parseInt(_params));
+        }
+        this.timeDaVez = 1;
+      }
+
+
       resolve();
     });
   }
