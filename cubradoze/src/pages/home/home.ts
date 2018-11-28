@@ -75,9 +75,15 @@ export class HomePage {
     // }, 200)
 
     // this.sorteado = true;
-    this.navCtrl.push(RespostaPage, {timeDaVez: this.timeDaVez, time1Numeros: this.time1Numeros, time2Numeros: this.time2Numeros});
+    this.navCtrl.push(RespostaPage, {timeDaVez: this.timeDaVez, time1Numeros: this.time1Numeros, time2Numeros: this.time2Numeros, callback: this.myCallbackFunction});
+  }
 
-    
+  myCallbackFunction = (_params) => {
+    return new Promise((resolve, reject) => {
+      console.log('params: ' + JSON.stringify(_params));
+      
+      resolve();
+    });
   }
 
   time2marcou(numero){

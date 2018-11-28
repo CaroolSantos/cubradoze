@@ -26,6 +26,7 @@ export class RespostaPage {
   resultado:number;
   time1Numeros:number[] = [];
   time2Numeros:number[] = [1];
+  callback: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public nativeAudio: NativeAudio, public alertCtrl: AlertController) {
@@ -36,6 +37,7 @@ export class RespostaPage {
     this.timeDaVez = this.navParams.get("timeDaVez");
     this.time1Numeros = this.navParams.get("time1Numeros");
     this.time2Numeros = this.navParams.get("time2Numeros");
+    this.callback = this.navParams.get("callback");
 
      let interval = setInterval(() => {
       this.myCount--;
@@ -86,6 +88,9 @@ export class RespostaPage {
 
   conferir(){
     console.log(this.resultado);
+    this.callback(this.resultado).then(() => { 
+      this.navCtrl.pop();
+    });
   }
 
   time2marcou(numero){

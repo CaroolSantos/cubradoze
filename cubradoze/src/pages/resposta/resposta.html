@@ -280,7 +280,7 @@
           <span >=</span>
         </ion-col>
         <ion-col>
-          <ion-input class="class-input" type="number"></ion-input>
+          <ion-input class="class-input" [(ngModel)]="resultado" type="number"></ion-input>
         </ion-col>
         <!-- 
             <ion-input  type="number"></ion-input>
@@ -307,7 +307,7 @@
       <button ion-button round large style="background-color: #A4A4A4">Pular</button>
     </ion-col>
     <ion-col>
-      <button ion-button round large style="background-color: #222341">RESPONDER</button>
+      <button ion-button round large style="background-color: #222341" (click)="conferir()">RESPONDER</button>
     </ion-col>
   </ion-row>
 </ion-footer>
