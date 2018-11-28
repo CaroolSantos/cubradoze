@@ -23,6 +23,7 @@ export class RespostaPage {
   timeDaVez:string;
   ticks =0;
   subscription:Subscription;
+  resultado:number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public nativeAudio: NativeAudio) {
@@ -63,6 +64,8 @@ export class RespostaPage {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-
+  conferir(){
+    console.log(this.resultado);
+  }
 
 }

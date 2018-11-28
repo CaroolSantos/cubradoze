@@ -20,7 +20,7 @@ export class HomePage {
   offline:boolean;
   timeDaVez:string;
   time1Numeros:number[] = [];
-  time2Numeros:number[] = [];
+  time2Numeros:number[] = [1];
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
