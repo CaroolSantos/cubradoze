@@ -1,19 +1,177 @@
 <ion-content class="back">
   <ion-grid class="grid-time">
-    <ion-row class="numeros vertical-align-content">
-      <ion-col>1</ion-col>
-      <ion-col>2</ion-col>
-      <ion-col>3</ion-col>
-      <ion-col>4</ion-col>
-      <ion-col>5</ion-col>
-      <ion-col>6</ion-col>
-      <ion-col>7</ion-col>
-      <ion-col>8</ion-col>
-      <ion-col>9</ion-col>
-      <ion-col>10</ion-col>
-      <ion-col>11</ion-col>
-      <ion-col>12</ion-col>
+    <ion-row *ngIf="timeDaVez==1" class="numeros vertical-align-content">
+        <ion-col [ngClass]="{'marcado-vermelho': time1marcou(1)}">
+            <div *ngIf="!time1marcou(1)">1</div>
+            <div *ngIf="time1marcou(1)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(2)}">
+            <div *ngIf="!time1marcou(2)">2</div>
+            <div *ngIf="time1marcou(2)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(3)}">
+            <div *ngIf="!time1marcou(3)">3</div>
+            <div *ngIf="time1marcou(3)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(4)}">
+            <div *ngIf="!time1marcou(4)">4</div>
+            <div *ngIf="time1marcou(4)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(5)}">
+            <div *ngIf="!time1marcou(5)">5</div>
+            <div *ngIf="time1marcou(5)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(6)}">
+            <div *ngIf="!time1marcou(6)">6</div>
+            <div *ngIf="time1marcou(6)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(7)}">
+            <div *ngIf="!time1marcou(7)">7</div>
+            <div *ngIf="time1marcou(7)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(8)}">
+            <div *ngIf="!time1marcou(8)">8</div>
+            <div *ngIf="time1marcou(8)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(9)}">
+            <div *ngIf="!time1marcou(9)">9</div>
+            <div *ngIf="time1marcou(9)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(10)}">
+            <div *ngIf="!time1marcou(10)">10</div>
+            <div *ngIf="time1marcou(10)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(11)}">
+            <div *ngIf="!time1marcou(11)">11</div>
+            <div *ngIf="time1marcou(11)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
+    
+          <ion-col [ngClass]="{'marcado-vermelho': time1marcou(12)}">
+            <div *ngIf="!time1marcou(12)">12</div>
+            <div *ngIf="time1marcou(12)">
+              <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+            </div>
+          </ion-col>
     </ion-row>
+
+    <ion-row *ngIf="timeDaVez==2" class="numeros bottom vertical-align-content">
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(1)}">
+          <div *ngIf="!time2marcou(1)">1</div>
+          <div *ngIf="time2marcou(1)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(2)}">
+          <div *ngIf="!time2marcou(2)">2</div>
+          <div *ngIf="time2marcou(2)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(3)}">
+          <div *ngIf="!time2marcou(3)">3</div>
+          <div *ngIf="time2marcou(3)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(4)}">
+          <div *ngIf="!time2marcou(4)">4</div>
+          <div *ngIf="time2marcou(4)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(5)}">
+          <div *ngIf="!time2marcou(5)">5</div>
+          <div *ngIf="time2marcou(5)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(6)}">
+          <div *ngIf="!time2marcou(6)">6</div>
+          <div *ngIf="time2marcou(6)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(7)}">
+          <div *ngIf="!time2marcou(7)">7</div>
+          <div *ngIf="time2marcou(7)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(8)}">
+          <div *ngIf="!time2marcou(8)">8</div>
+          <div *ngIf="time2marcou(8)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(9)}">
+          <div *ngIf="!time2marcou(9)">9</div>
+          <div *ngIf="time2marcou(9)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(10)}">
+          <div *ngIf="!time2marcou(10)">10</div>
+          <div *ngIf="time2marcou(10)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(11)}">
+          <div *ngIf="!time2marcou(11)">11</div>
+          <div *ngIf="time2marcou(11)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+        <ion-col [ngClass]="{'marcado-azul': time2marcou(12)}">
+          <div *ngIf="!time2marcou(12)">12</div>
+          <div *ngIf="time2marcou(12)">
+            <ion-icon name="md-checkmark-circle-outline"></ion-icon>
+          </div>
+        </ion-col>
+  
+      </ion-row>
   </ion-grid>
 
 

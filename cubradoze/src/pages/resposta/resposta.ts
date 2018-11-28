@@ -24,6 +24,8 @@ export class RespostaPage {
   ticks =0;
   subscription:Subscription;
   resultado:number;
+  time1Numeros:number[] = [];
+  time2Numeros:number[] = [1];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public nativeAudio: NativeAudio, public alertCtrl: AlertController) {
@@ -32,6 +34,8 @@ export class RespostaPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RespostaPage');
     this.timeDaVez = this.navParams.get("timeDaVez");
+    this.time1Numeros = this.navParams.get("time1Numeros");
+    this.time2Numeros = this.navParams.get("time2Numeros");
 
      let interval = setInterval(() => {
       this.myCount--;
@@ -82,6 +86,14 @@ export class RespostaPage {
 
   conferir(){
     console.log(this.resultado);
+  }
+
+  time2marcou(numero){
+    return this.time2Numeros.indexOf(numero) > -1;
+  }
+
+  time1marcou(numero){
+    return this.time1Numeros.indexOf(numero) > -1;
   }
 
 }
