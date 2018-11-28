@@ -47,16 +47,18 @@ export class DefinicaoTimesPage {
       }
       this.partidaProv.salvar(partida).subscribe(novapartida=>{
         console.log(novapartida);
-        //this.storage.setItem("partida",);
-        this.navCtrl.setRoot(HomePage);
+        this.storage.set("IdPartida",novapartida.Id);
+        this.navCtrl.setRoot(HomePage,{offline:false});
       },error=>{
-        console.error(error);
-        var alert = this.alertCtrl.create({
-          title: "Ops",
-          subTitle: "Aconteceu algo errado, tente novamente."
-        });
-        this.nativeAudio.play('error', () => console.log('error is done playing'));
-        alert.present();
+        console.error('erro ao salvar partida na API',error);
+        this.navCtrl.setRoot(HomePage,{offline:true});
+
+        // var alert = this.alertCtrl.create({
+        //   title: "Ops",
+        //   subTitle: "Aconteceu algo errado, tente novamente."
+        // });
+        // this.nativeAudio.play('error', () => console.log('error is done playing'));
+        // alert.present();
       })
     }
     

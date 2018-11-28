@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { RespostaPage } from '../resposta/resposta';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-home',
@@ -13,11 +14,44 @@ export class HomePage {
   numero1: number;
   numero2: number;
   numero3: number;
+  time1:string;
+  time2:string;
+  idPartida:number;
+  offline:boolean;
+  timeDaVez:string;
+  time1Numeros:number[] = [];
+  time2Numeros:number[] = [];
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public storage: Storage) {
+    
+      this.storage.get("time1").then(time1=>{
+      this.time1 = time1;
+    })
+    
+    this.storage.get("time2").then(time2=>{
+      this.time2 = time2;
+    })
+    
+    this.offline = this.navParams.get("offline");
 
+    if(!this.offline){
+      this.storage.get("IdPartida").then(idPartida=>{
+        if(idPartida){
+          this.idPartida = idPartida;
+        }
+      })
+  
+    }
+
+    this.timeDaVez = this.getRandomInt(1,2);
+
+
+   
+    
   }
-
+ 
   getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -29,25 +63,29 @@ export class HomePage {
   }
 
   sortear() {
-    this.sorteando = true;
+    // this.sorteando = true;
 
-    let interval = setInterval(() => {
-      this.myCount--;
-      this.numero1 = this.getRandomInt(1,6);
-      this.numero2 = this.getRandomInt(1,6);
-      this.numero3 = this.getRandomInt(1,6);
+    // let interval = setInterval(() => {
+    //   this.myCount--;
+    //   this.numero1 = this.getRandomInt(1,6);
+    //   this.numero2 = this.getRandomInt(1,6);
+    //   this.numero3 = this.getRandomInt(1,6);
 
-      if (this.myCount == 0) clearInterval(interval);
-    }, 200)
+    //   if (this.myCount == 0) clearInterval(interval);
+    // }, 200)
 
-    this.sorteado = true;
-    this.navCtrl.push(RespostaPage, {num1: this.numero1, num2: this.numero2, num3: this.numero3});
+    // this.sorteado = true;
+    this.navCtrl.push(RespostaPage, {timeDaVez: this.timeDaVez, time1Numeros: this.time1Numeros, time2Numeros: this.time2Numeros});
 
     
   }
 
-  responder(){
-    //todo abrir modal
+  time2marcou(numero){
+    return this.time2Numeros.indexOf(numero) > -1;
+  }
+
+  time1marcou(numero){
+    return this.time1Numeros.indexOf(numero) > -1;
   }
 
 }

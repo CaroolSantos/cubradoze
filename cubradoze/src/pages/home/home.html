@@ -9,7 +9,7 @@
 <ion-content class="back"> 
   <ion-grid class="grid-time">
       <ion-row class="time time-vermelho">
-          <ion-col>TIME A</ion-col>
+          <ion-col>{{time1}}</ion-col>
         </ion-row>
         <ion-row class="numeros vertical-align-content">
           <ion-col>1</ion-col>
@@ -36,24 +36,24 @@
     <ion-row class="vertical-align-content">
       <ion-col>
         É a vez do time
-        <span class="time-span">TIME A</span>
-        
+        <span class="time-span time1" *ngIf="timeDaVez == 1">{{time1}}</span>
+        <span class="time-span time2" *ngIf="timeDaVez == 2">{{time2}}</span>
       </ion-col>
       <ion-col>
           <button ion-button round large (click)="sortear()" [hidden]="sorteando">Sortear números</button>
-          <ion-label [hidden]="!sorteando || !sorteado">{{numero1}}</ion-label>
+          <!-- <ion-label [hidden]="!sorteando || !sorteado">{{numero1}}</ion-label>
           <ion-label [hidden]="!sorteando || !sorteado">{{numero2}}</ion-label> 
           <ion-label [hidden]="!sorteando || !sorteado">{{numero3}}</ion-label>  
-          <button ion-button round large (click)="responder()" [hidden]="!sorteado">Continuar</button>
+          <button ion-button round large (click)="responder()" [hidden]="!sorteado">Continuar</button> -->
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid class="grid-time grid-time-azul">
       <ion-row class="numeros bottom vertical-align-content">
-          <ion-col class="marcado-azul">
-            
-            <div>
+          <ion-col [ngClass]="{'marcado-azul': time2marcou(1)}">
+            <div>1</div>
+            <div *ngIf="time2marcou(1)">
               <ion-icon name="md-checkmark-circle-outline"></ion-icon>
             </div>
           </ion-col>
@@ -71,7 +71,7 @@
         </ion-row>
     
       <ion-row class="time time-azul">
-        <ion-col>TIME B</ion-col>
+        <ion-col>{{time2}}</ion-col>
       </ion-row>
   </ion-grid>
   

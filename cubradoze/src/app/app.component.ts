@@ -10,7 +10,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = HomePage;
+  rootPage:any = IntroducaoPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     public nativeAudio: NativeAudio) {
@@ -26,6 +26,12 @@ export class MyApp {
       });
 
        this.nativeAudio.preloadSimple('success', 'assets/sounds/success.wav').then(x=>{
+        console.log('preload audio success');
+      }, error=>{
+        console.error(error);
+      });
+
+      this.nativeAudio.preloadSimple('ticking', 'assets/sounds/ticking.wav').then(x=>{
         console.log('preload audio success');
       }, error=>{
         console.error(error);
