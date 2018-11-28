@@ -20,7 +20,7 @@ export class TelaVitoriaPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad TelaVitoriaPage');
     this.timeVencedor = this.navParams.get("timeVencedor");
-    this.timeVencedor= "Antonio";
+
   }
 
   novoJogo(){

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Observable, Subscription} from 'rxjs/Rx';
 import { timer } from 'rxjs/observable/timer';
 import { NativeAudio } from '@ionic-native/native-audio';
@@ -36,13 +36,15 @@ export class RespostaPage {
   time1Numeros:number[] = [];
   time2Numeros:number[] = [1];
   callback: any;
+  loader;
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public nativeAudio: NativeAudio, public alertCtrl: AlertController,
     public conexaoProv: ConexaoProvider,
     public jogadaProv: JogadaProvider,
-    public storage: Storage) {
+    public storage: Storage,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -105,7 +107,8 @@ export class RespostaPage {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  conferir(){
+  conferir(){ 
+    this.showLoading('Aguarde...');
     console.log(this.resultado);
     
     console.log(this.number1);
@@ -122,6 +125,7 @@ export class RespostaPage {
     
 
     if((this.operacao1== "+" || this.operacao1=="-") && (this.operacao2== "*" || this.operacao2=="/")){
+      this.loader.dismiss();
       this.nativeAudio.play("error");
       //this.navCtrl.push(RespostaErradaPage);
       let alert = this.alertCtrl.create({
@@ -144,6 +148,7 @@ export class RespostaPage {
               Tempo:this.ticks,
               IdPartida:idPartida
             }
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "É ISSO AÍ!!",
@@ -159,6 +164,7 @@ export class RespostaPage {
               });
             })
           }else{
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "É ISSO AÍ!!",
@@ -178,6 +184,7 @@ export class RespostaPage {
        
       
       }else{
+        this.loader.dismiss();
         this.nativeAudio.play("error");
 
         this.storage.get("IdPartida").then(idPartida=>{
@@ -189,6 +196,7 @@ export class RespostaPage {
               Tempo:this.ticks,
               IdPartida:idPartida
             }
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
@@ -205,6 +213,7 @@ export class RespostaPage {
               });
             })
           }else{
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
@@ -275,6 +284,13 @@ export class RespostaPage {
       }
     })
 
+  }
+
+  showLoading(msg) {
+    this.loader = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loader.present();
   }
 
 }
