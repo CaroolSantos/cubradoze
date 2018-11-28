@@ -206,10 +206,11 @@
     <ion-list>
       <ion-row class="info-col">
         <ion-col>
-          <ion-select [(ngModel)]="number1" class="tam-select" interface="popover">
-            <ion-option [value]="numero1">{{numero1}}</ion-option>
+          <ion-select [(ngModel)]="number1" class="tam-select" interface="popover" >
+            <ion-option [value]="n" *ngFor="let n of array1">{{n}}</ion-option>
+            <!-- <ion-option [value]="numero1">{{numero1}}</ion-option>
             <ion-option [value]="numero2">{{numero2}}</ion-option>
-            <ion-option [value]="numero3">{{numero3}}</ion-option>
+            <ion-option [value]="numero3">{{numero3}}</ion-option> -->
           </ion-select>
         </ion-col>
 
@@ -223,10 +224,8 @@
         </ion-col>
 
         <ion-col>
-          <ion-select [(ngModel)]="number2" class="tam-select" interface="popover">
-            <ion-option [value]="numero1">{{numero1}}</ion-option>
-            <ion-option [value]="numero2">{{numero2}}</ion-option>
-            <ion-option [value]="numero3">{{numero3}}</ion-option>
+          <ion-select [(ngModel)]="number2" class="tam-select" interface="popover" >
+              <ion-option [value]="n" *ngFor="let n of array1">{{n}}</ion-option>
           </ion-select>
         </ion-col>
 
@@ -240,10 +239,8 @@
         </ion-col>
 
         <ion-col>
-          <ion-select [(ngModel)]="number3" class="tam-select" interface="popover">
-            <ion-option [value]="numero1">{{numero1}}</ion-option>
-            <ion-option [value]="numero2">{{numero2}}</ion-option>
-            <ion-option [value]="numero3">{{numero3}}</ion-option>
+          <ion-select [(ngModel)]="number3" class="tam-select" interface="popover" >
+              <ion-option [value]="n" *ngFor="let n of array1">{{n}}</ion-option>
           </ion-select>
         </ion-col>
 
