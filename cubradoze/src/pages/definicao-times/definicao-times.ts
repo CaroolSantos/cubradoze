@@ -39,7 +39,7 @@ export class DefinicaoTimesPage {
 
     this.storage.set("time1",this.time1);
     this.storage.set("time2",this.time2);
-
+    this.nativeAudio.stop("intro");
     if(this.conexaoProv.isOnline()){
       let partida = {
         Time1: this.time1,
@@ -51,6 +51,7 @@ export class DefinicaoTimesPage {
         this.navCtrl.setRoot(HomePage,{offline:false});
       },error=>{
         console.error('erro ao salvar partida na API',error);
+
         this.navCtrl.setRoot(HomePage,{offline:true});
 
         // var alert = this.alertCtrl.create({

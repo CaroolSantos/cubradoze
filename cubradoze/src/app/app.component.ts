@@ -37,6 +37,21 @@ export class MyApp {
         console.error(error);
       });
 
+
+      this.nativeAudio.preloadSimple('final', 'assets/sounds/finish.wav').then(x=>{
+        console.log('preload audio success');
+      }, error=>{
+        console.error(error);
+      });
+
+      
+      this.nativeAudio.preloadSimple('final', 'assets/sounds/intro.mp3').then(x=>{
+        console.log('preload audio success');
+      }, error=>{
+        console.error(error);
+      });
+
+
     });
   }
 }

@@ -1,6 +1,7 @@
 import { DefinicaoTimesPage } from './../definicao-times/definicao-times';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 /**
  * Generated class for the IntroducaoPage page.
@@ -20,10 +21,11 @@ export class IntroducaoPage {
   falaProfessor2: string;
   selecionarTimes: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public nativeAudio: NativeAudio) {
   }
 
   ionViewDidLoad() {
+    this.nativeAudio.loop("intro");
     console.log('ionViewDidLoad IntroducaoPage');
   }
 
@@ -35,6 +37,7 @@ export class IntroducaoPage {
   }
 
   selecionarTime() {
+    
     this.navCtrl.push(DefinicaoTimesPage);
 
   }

@@ -6,6 +6,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import { ConexaoProvider } from '../../providers/conexao/conexao';
 import { JogadaProvider } from '../../providers/jogada/jogada';
 import { Storage } from '@ionic/storage';
+import { RespostaErradaPage } from '../resposta-errada/resposta-errada';
 /**
  * Generated class for the RespostaPage page.
  *
@@ -116,40 +117,109 @@ export class RespostaPage {
 
     this.subscription.unsubscribe();
     this.nativeAudio.stop("ticking");
+    
 
-    if(resultado2 == this.resultado){
-      this.nativeAudio.play("success");
-      console.log('ACERTOU');
+    if(this.operacao1== "+" || this.operacao1=="-" && this.operacao2== "*" || this.operacao2=="/"){
+      this.nativeAudio.play("error");
+      //this.navCtrl.push(RespostaErradaPage);
+      let alert = this.alertCtrl.create({
+        title: "Se liga na ordem das operações!",
+        subTitle: "Não é correto utilizar as operações de soma ou subtração ANTES das operações de multiplicação ou divisão.",
+        buttons: ["Tentar novamente"]
+      });
+      alert.present();
+    } else{
 
-      this.storage.get("IdPartida").then(idPartida=>{
-        if(idPartida){
-          let jogada = {
-            Acertou:1,
-            Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
-            Time:this.timeDaVez,
-            Tempo:this.ticks,
-            IdPartida:idPartida
-          }
-          this.jogadaProv.salvar(jogada).subscribe(x=>{
+      if(resultado2 == this.resultado){
+        this.nativeAudio.play("success");
+
+        this.storage.get("IdPartida").then(idPartida=>{
+          if(idPartida){
+            let jogada = {
+              Acertou:1,
+              Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
+              Time:this.timeDaVez,
+              Tempo:this.ticks,
+              IdPartida:idPartida
+            }
+            
+            let alert = this.alertCtrl.create({
+              title: "É ISSO AÍ!!",
+              subTitle: "Continue assim e você vai se dar bem.",
+              buttons: ["Ok"]
+            });
+            alert.present();
+            console.log('ACERTOU');
+
+            this.jogadaProv.salvar(jogada).subscribe(x=>{
+              this.callback(this.resultado).then(() => { 
+                this.navCtrl.pop();
+              });
+            })
+          }else{
+            
+            let alert = this.alertCtrl.create({
+              title: "É ISSO AÍ!!",
+              subTitle: "Continue assim e você vai se dar bem.",
+              buttons: ["Ok"]
+            });
+            alert.present();
+            console.log('ACERTOU');
+
             this.callback(this.resultado).then(() => { 
               this.navCtrl.pop();
             });
-          })
-        }else{
-          this.callback(this.resultado).then(() => { 
-            this.navCtrl.pop();
-          });
-        }
-      })
+          }
+        })
 
+        
+       
       
-     
-    }else{
-      this.nativeAudio.play("error");
-      console.log('ERROU');
-      this.callback(-1).then(() => { 
-        this.navCtrl.pop();
-      });
+      }else{
+        this.nativeAudio.play("error");
+
+        this.storage.get("IdPartida").then(idPartida=>{
+          if(idPartida){
+            let jogada = {
+              Acertou:0,
+              Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
+              Time:this.timeDaVez,
+              Tempo:this.ticks,
+              IdPartida:idPartida
+            }
+            
+            let alert = this.alertCtrl.create({
+              title: "Não foi dessa vez!",
+              subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;)",
+              buttons: ["Ok"]
+            });
+            alert.present();
+            console.log('ERROU');
+            
+
+            this.jogadaProv.salvar(jogada).subscribe(x=>{
+              this.callback(-1).then(() => { 
+                this.navCtrl.pop();
+              });
+            })
+          }else{
+            
+            let alert = this.alertCtrl.create({
+              title: "Não foi dessa vez!",
+              subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;)",
+              buttons: ["Ok"]
+            });
+            alert.present();
+            console.log('ERROU');
+
+            this.callback(-1).then(() => { 
+              this.navCtrl.pop();
+            });
+          }
+        })
+
+       
+      }
     }
 
    

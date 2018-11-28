@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { RespostaPage } from '../resposta/resposta';
 import { Storage } from '@ionic/storage';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 @Component({
   selector: 'page-home',
@@ -24,7 +25,8 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public storage: Storage) {
+    public storage: Storage,
+    public nativeAudio: NativeAudio) {
     
       this.storage.get("time1").then(time1=>{
       this.time1 = time1;
@@ -86,6 +88,7 @@ export class HomePage {
           this.time1Numeros.push(parseInt(_params));
           
           if(this.time1Numeros.length == 12){
+            this.nativeAudio.play("final");
             console.log('VENCEU O JOGO');
           }
         }
@@ -94,7 +97,8 @@ export class HomePage {
         if(parseInt(_params) > -1){
           this.time2Numeros.push(parseInt(_params));
           
-          if(this.time1Numeros.length == 12){
+          if(this.time2Numeros.length == 12){
+            this.nativeAudio.play("final");
             console.log('VENCEU O JOGO');
           }
         }
