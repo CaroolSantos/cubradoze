@@ -3,7 +3,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { RespostaPage } from '../resposta/resposta';
 import { Storage } from '@ionic/storage';
 import { NativeAudio } from '@ionic-native/native-audio';
-import { PartidaProvider } from '../../providers/partida/partida';
+import { TelaVitoriaPage } from '../tela-vitoria/tela-vitoria';
 
 @Component({
   selector: 'page-home',
@@ -27,8 +27,7 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public storage: Storage,
-    public nativeAudio: NativeAudio,
-    public partidaProv: PartidaProvider) {
+    public nativeAudio: NativeAudio) {
     
       this.storage.get("time1").then(time1=>{
       this.time1 = time1;
@@ -50,10 +49,6 @@ export class HomePage {
     }
 
     this.timeDaVez = this.getRandomInt(1,2);
-
-
-   
-    
   }
  
   getRandomInt(min, max) {
@@ -91,30 +86,22 @@ export class HomePage {
           
           if(this.time1Numeros.length == 12){
             this.nativeAudio.play("final");
-            this.finalizarPartida(this.time1);
+            this.navCtrl.setRoot(TelaVitoriaPage, {timeVencedor: this.time1});
             console.log('VENCEU O JOGO');
-          }else{
-            this.timeDaVez = 2;
           }
-        }else{
-          this.timeDaVez = 2;
         }
-        
+        this.timeDaVez = 2;
       }else{
         if(parseInt(_params) > -1){
           this.time2Numeros.push(parseInt(_params));
           
           if(this.time2Numeros.length == 12){
-            this.finalizarPartida(this.time2);
             this.nativeAudio.play("final");
+            this.navCtrl.setRoot(TelaVitoriaPage, {timeVencedor: this.time2});
             console.log('VENCEU O JOGO');
-          }else{
-            this.timeDaVez = 1;
           }
-        }else{
-          this.timeDaVez = 1;
         }
-        
+        this.timeDaVez = 1;
       }
 
 
@@ -128,23 +115,6 @@ export class HomePage {
 
   time1marcou(numero){
     return this.time1Numeros.indexOf(numero) > -1;
-  }
-
-  finalizarPartida(time){
-    this.storage.get("IdPartida").then(idPartida=>{
-      if(idPartida){
-        let partida = {
-          IdPartida: idPartida,
-          TimeVencedor: time
-        }
-        this.partidaProv.finalizar(partida).subscribe(x=>{
-          console.log('partida finalizada');
-          //modal aqui
-        })
-      }else{
-        //modal aqui
-      }
-    })
   }
 
 }

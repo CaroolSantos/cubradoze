@@ -1,3 +1,47 @@
 page-tela-vitoria {
+    .imgsucesso {
+        width: 20%;
+        height: 20%;
+        margin: 0 auto;
+      }
+      
+      ion-row {
+        align-items: center;
+        text-align: center;
+      }
+      
+      .acerto-button {
+        width: 100%;
+        border-radius: 30px;
+        // font-size: 0.9em;
+        border: 1px solid #fff;
+        background-color: rgb(18, 114, 58);
+      }
+
+      .sair-button{
+        width: 100%;
+        border-radius: 30px;
+        // font-size: 0.9em;
+        border: 1px solid #fff;
+        background-color:#A4A4A4;
+      }
+      
+      .back-sucesso {
+        background: #58d84e;
+      }
+      
+      .vertical-align-content>* {
+        display: flex!important;
+        align-content: center!important;
+        align-items: center!important;
+      }
+      
+      p {
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+        font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+      }
+
 
 }

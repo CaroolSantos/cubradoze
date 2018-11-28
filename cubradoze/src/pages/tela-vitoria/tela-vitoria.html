@@ -1,18 +1,16 @@
-<!--
-  Generated template for the TelaVitoriaPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>tela-vitoria</ion-title>
-  </ion-navbar>
-
-</ion-header>
+<ion-content padding class="back-sucesso vertical-align-content">
+    <ion-row>
+        <img class="imgsucesso"  src="assets/imgs/trofeu.png">
+        
+        <p class="msg-sucesso">Parabéns {{timeVencedor}}!! Você foi o vencedor dessa partida. Deseja jogar novamente e desafiar outras pessoas?</p>
+   
 
 
-<ion-content padding>
+        
+            <button ion-button class="acerto-button" (click)="novoJogo()">Jogar novamente</button>
+            <button ion-button class="sair-button" (click)="sair()">Sair</button>
+    </ion-row>
 
-</ion-content>
+        
+ 
+  </ion-content>

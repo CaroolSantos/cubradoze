@@ -6,11 +6,12 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { TelaVitoriaPage } from '../pages/tela-vitoria/tela-vitoria';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = IntroducaoPage;
+  rootPage:any = TelaVitoriaPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     public nativeAudio: NativeAudio) {
