@@ -41,17 +41,103 @@
     </ion-col>
   </ion-row>
 
-  <div class="input-resposta">
+  <!-- <div class="input-resposta">
     <ion-row>
-      <ion-input  type="number"></ion-input>
+
+      <ion-select [(ngModel)]="number" class="tam-select" interface="popover">
+        <ion-option value="1">2</ion-option>
+        <ion-option value="4">3</ion-option>
+        <ion-option value="6">5</ion-option>
+      </ion-select>
+
       <ion-input class="class-input" type="text"></ion-input>
-      <ion-input type="number"></ion-input>
+
+      <ion-select [(ngModel)]="number2" class="tam-select" interface="popover">
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="5">5</ion-option>
+        </ion-select>
+
       <ion-input class="class-input" type="text"></ion-input>
-      <ion-input type="number"></ion-input>
+
+      <ion-select [(ngModel)]="number3" class="tam-select" interface="popover">
+          <ion-option value="2">2</ion-option>
+          <ion-option value="3">3</ion-option>
+          <ion-option value="5">5</ion-option>
+        </ion-select>
+
       <span style="font-size: 48px; text-align: center; align-self: center;">=</span>
       <ion-input type="number"></ion-input>
 
     </ion-row>
+  </div> -->
+
+  <div class="input-resposta">
+    <ion-list>
+      <ion-row class="info-col">
+        <ion-col>
+          <ion-select [(ngModel)]="number" class="tam-select" interface="popover">
+            <ion-option value="1">2</ion-option>
+            <ion-option value="4">3</ion-option>
+            <ion-option value="6">5</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col>
+            <ion-select class="class-inputSelect" [(ngModel)]="operacao" interface="popover">
+                <ion-option value="1">+</ion-option>
+                <ion-option value="4">-</ion-option>
+                <ion-option value="6">x</ion-option>
+                <ion-option value="6">/</ion-option>
+              </ion-select>
+        </ion-col>
+
+        <ion-col>
+          <ion-select [(ngModel)]="number2" class="tam-select" interface="popover">
+            <ion-option value="1">2</ion-option>
+            <ion-option value="4">3</ion-option>
+            <ion-option value="6">5</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col>
+          <ion-select class="class-inputSelect" [(ngModel)]="operacao2" interface="popover">
+                <ion-option value="1">+</ion-option>
+                <ion-option value="4">-</ion-option>
+                <ion-option value="6">x</ion-option>
+                <ion-option value="6">/</ion-option>
+              </ion-select>
+        </ion-col>
+
+        <ion-col>
+          <ion-select [(ngModel)]="number3" class="tam-select" interface="popover">
+            <ion-option value="1">2</ion-option>
+            <ion-option value="4">3</ion-option>
+            <ion-option value="6">5</ion-option>
+          </ion-select>
+        </ion-col>
+
+        <ion-col style="font-size: 48px; text-align: center; align-self: center; margin: 0px">
+          <span >=</span>
+        </ion-col>
+        <ion-col>
+          <ion-input class="class-input" type="number"></ion-input>
+        </ion-col>
+        <!-- 
+            <ion-input  type="number"></ion-input>
+            <ion-input class="class-input" type="text"></ion-input>
+      
+    
+            <ion-input type="number"></ion-input>
+            <ion-input class="class-input" type="text"></ion-input>
+      
+            <ion-input type="number"></ion-input>
+            <span style="font-size: 48px; text-align: center; align-self: center;">=</span>
+            <ion-input type="number"></ion-input>
+       -->
+      </ion-row>
+    </ion-list>
+
   </div>
 
 
@@ -60,12 +146,12 @@
 </ion-content>
 
 <ion-footer>
-    <ion-row class="info-col">
-        <ion-col>
-            <button ion-button round large  style="background-color: black">Pular</button>
-        </ion-col>
-        <ion-col>
-            <button ion-button round large style="background-color: green">RESPONDER</button>
-        </ion-col>
-      </ion-row>
-  </ion-footer>
+  <ion-row class="info-col">
+    <ion-col>
+      <button ion-button round large style="background-color: black">Pular</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button round large style="background-color: green">RESPONDER</button>
+    </ion-col>
+  </ion-row>
+</ion-footer>
