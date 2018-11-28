@@ -93,9 +93,7 @@ export class RespostaPage {
 
   conferir(){
     console.log(this.resultado);
-    this.callback(this.resultado).then(() => { 
-      this.navCtrl.pop();
-    });
+    
     console.log(this.number1);
     console.log(this.operacao1);
     console.log(this.number2);
@@ -112,6 +110,10 @@ export class RespostaPage {
       this.nativeAudio.play("error");
       console.log('ERROU');
     }
+
+    this.callback(this.resultado).then(() => { 
+      this.navCtrl.pop();
+    });
   }
 
   calcula(operando1,operacao,operando2){
