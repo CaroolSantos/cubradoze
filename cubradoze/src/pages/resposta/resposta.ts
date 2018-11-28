@@ -84,7 +84,9 @@ export class RespostaPage {
           {
             text: "Ok",
             handler: data => {
-              this.navCtrl.pop();
+              this.callback(-1).then(() => { 
+                this.navCtrl.pop();
+              });
             }
           }
       

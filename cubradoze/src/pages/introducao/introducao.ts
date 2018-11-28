@@ -25,11 +25,13 @@ export class IntroducaoPage {
   }
 
   ionViewDidLoad() {
-    this.nativeAudio.loop("intro");
+    
+    
     console.log('ionViewDidLoad IntroducaoPage');
   }
 
   passarFala() {
+    this.nativeAudio.loop("intro");
     this.mudarOrdem = true;
     this.falaProfessor = "Você vai precisar realizar operações matemáticas com os valores que irão ser sorteados. Exemplo: 2+2=4 ou 2x3+1=7.";
     this.falaProfessor2 = "Ao realizar as operações é só responder qual número você quer preencher no tabuleiro. Mas é tudo de cabeça tá? Ganha o jogo o time que conseguir preencher o seu tabuleiro mais rápido!"

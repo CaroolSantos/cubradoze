@@ -11,7 +11,7 @@ import { TelaVitoriaPage } from '../pages/tela-vitoria/tela-vitoria';
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = TelaVitoriaPage;
+  rootPage:any = IntroducaoPage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen,
     public nativeAudio: NativeAudio) {
@@ -21,11 +21,7 @@ export class MyApp {
       statusBar.styleDefault();
       splashScreen.hide();
       
-      this.nativeAudio.preloadSimple('intro', 'assets/sounds/intro.mp3').then(x=>{
-        console.log('preload audio success');
-      }, error=>{
-        console.error(error);
-      });
+     
       
       this.nativeAudio.preloadSimple('error', 'assets/sounds/error.wav').then(x=>{
         console.log('preload audio');
@@ -52,7 +48,13 @@ export class MyApp {
         console.error(error);
       });
 
-      
+      this.nativeAudio.preloadComplex('intro', 'assets/sounds/intro.mp3', 1,1,0).then(x=>{
+        console.log('preload audio success');
+        
+       
+      }, error=>{
+        console.error(error);
+      });
 
 
     });
