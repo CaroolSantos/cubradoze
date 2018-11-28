@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import {Observable, Subscription} from 'rxjs/Rx';
 import { timer } from 'rxjs/observable/timer';
 import { NativeAudio } from '@ionic-native/native-audio';
@@ -39,12 +39,15 @@ export class RespostaPage {
   array1: number[] = [];
   array2: number[] = [];
   array3: number[] = [];
+  loader;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public nativeAudio: NativeAudio, public alertCtrl: AlertController,
     public conexaoProv: ConexaoProvider,
     public jogadaProv: JogadaProvider,
-    public storage: Storage) {
+    public storage: Storage,
+    public loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -156,7 +159,7 @@ export class RespostaPage {
 }
 
   conferir(){
-
+    
     var selecionados = [this.number1,this.number2,this.number3];
     var sorteados = [this.numero1,this.numero2,this.numero3];
 
@@ -179,9 +182,10 @@ export class RespostaPage {
           alert.present();
           console.log('ERROU');
           
-
+          this.showLoading('Aguarde...');
           this.jogadaProv.salvar(jogada).subscribe(x=>{
             this.callback(-1).then(() => { 
+              this.loader.dismiss();
               this.navCtrl.pop();
             });
           })
@@ -218,6 +222,7 @@ export class RespostaPage {
     
 
     if((this.operacao1== "+" || this.operacao1=="-") && (this.operacao2== "*" || this.operacao2=="/")){
+      this.loader.dismiss();
       this.nativeAudio.play("error");
       //this.navCtrl.push(RespostaErradaPage);
       let alert = this.alertCtrl.create({
@@ -240,6 +245,7 @@ export class RespostaPage {
               Tempo:this.ticks,
               IdPartida:idPartida
             }
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "É ISSO AÍ!!",
@@ -255,6 +261,7 @@ export class RespostaPage {
               });
             })
           }else{
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "É ISSO AÍ!!",
@@ -274,6 +281,7 @@ export class RespostaPage {
        
       
       }else{
+        this.loader.dismiss();
         this.nativeAudio.play("error");
 
         this.storage.get("IdPartida").then(idPartida=>{
@@ -285,6 +293,7 @@ export class RespostaPage {
               Tempo:this.ticks,
               IdPartida:idPartida
             }
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
@@ -301,6 +310,7 @@ export class RespostaPage {
               });
             })
           }else{
+            this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
@@ -373,6 +383,13 @@ export class RespostaPage {
       }
     })
 
+  }
+
+  showLoading(msg) {
+    this.loader = this.loadingCtrl.create({
+      content: msg
+    });
+    this.loader.present();
   }
 
 }
