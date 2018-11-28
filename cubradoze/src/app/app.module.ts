@@ -18,6 +18,7 @@ import { NativeAudio } from '@ionic-native/native-audio';
 import { RespostaPage } from '../pages/resposta/resposta';
 import { RespostaErradaPage } from '../pages/resposta-errada/resposta-errada';
 import { RespostaCertaPage } from '../pages/resposta-certa/resposta-certa';
+import { TelaVitoriaPage } from '../pages/tela-vitoria/tela-vitoria';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RespostaCertaPage } from '../pages/resposta-certa/resposta-certa';
     DefinicaoTimesPage,
     RespostaPage,
     RespostaErradaPage,
-    RespostaCertaPage
+    RespostaCertaPage,
+    TelaVitoriaPage
   ],
   imports: [
     BrowserModule,
@@ -43,7 +45,8 @@ import { RespostaCertaPage } from '../pages/resposta-certa/resposta-certa';
     DefinicaoTimesPage,
     RespostaPage,
     RespostaErradaPage,
-    RespostaCertaPage
+    RespostaCertaPage,
+    TelaVitoriaPage
   ],
   providers: [
     StatusBar,

@@ -119,7 +119,7 @@ export class RespostaPage {
     this.nativeAudio.stop("ticking");
     
 
-    if(this.operacao1== "+" || this.operacao1=="-" && this.operacao2== "*" || this.operacao2=="/"){
+    if((this.operacao1== "+" || this.operacao1=="-") && (this.operacao2== "*" || this.operacao2=="/")){
       this.nativeAudio.play("error");
       //this.navCtrl.push(RespostaErradaPage);
       let alert = this.alertCtrl.create({
