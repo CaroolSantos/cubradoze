@@ -90,16 +90,18 @@ page-resposta {
 
     .input-resposta{
         display: flex;
-        margin-top: 5%;
+        margin-top: 55px;
         margin-left: 20px;
         margin-right: 20px;
         justify-content: center;
     }
 
 ion-input{
-    font-size: 36px;
+    font-size: 50px;
     border:6px solid black;
-    padding: 25px;
+    //padding: 25px;
+    min-width: 90%;
+    min-height: 100px;
 }
 
 ion-select{
@@ -107,7 +109,7 @@ ion-select{
     border:6px solid black;
     padding:0px;
     min-width: 90%;
-    min-height: 120px;
+    min-height: 100px;
 }
 // .tam-select{
 //     padding: 50px;
@@ -119,6 +121,9 @@ ion-select{
     //padding: 50px;
 }
 
+.text-input{
+    text-align: center;
+}
 // .class-input{
 //     padding: 25px;
 // }
