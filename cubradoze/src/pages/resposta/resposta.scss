@@ -128,5 +128,17 @@ ion-select{
 //     padding: 25px;
 // }
 
+.marcado{
+    &-azul{
+        background-color:blue;
+        color:white;
+    }
+
+    &-vermelho{
+        background-color: red;
+        color:white;
+    }
+}
+
 
 }

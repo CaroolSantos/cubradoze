@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {Observable, Subscription} from 'rxjs/Rx';
 import { timer } from 'rxjs/observable/timer';
 import { NativeAudio } from '@ionic-native/native-audio';
@@ -29,14 +29,18 @@ export class RespostaPage {
   number3:number;
   operacao1:string;
   operacao2:string;
+  time1Numeros:number[] = [];
+  time2Numeros:number[] = [1];
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public nativeAudio: NativeAudio) {
+    public nativeAudio: NativeAudio, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RespostaPage');
     this.timeDaVez = this.navParams.get("timeDaVez");
+    this.time1Numeros = this.navParams.get("time1Numeros");
+    this.time2Numeros = this.navParams.get("time2Numeros");
 
      let interval = setInterval(() => {
       this.myCount--;
@@ -57,6 +61,22 @@ export class RespostaPage {
     console.log(this.ticks);
     if(this.ticks == 60){
       console.log('ACABOU O TEMPO');
+      this.nativeAudio.play("error");
+      let alert = this.alertCtrl.create({
+        title: "Tempo esgotado!",
+        subTitle: "Seu tempo de resposta esgotou :( tente na próxima vez.",
+        buttons: [
+          {
+            text: "Ok",
+            handler: data => {
+              this.navCtrl.pop();
+            }
+          }
+      
+        ]
+      });
+      alert.present();
+
       this.nativeAudio.stop("ticking");
       this.subscription.unsubscribe();
     }
@@ -102,6 +122,14 @@ export class RespostaPage {
       default:
         break;
     }
+  }
+
+  time2marcou(numero){
+    return this.time2Numeros.indexOf(numero) > -1;
+  }
+
+  time1marcou(numero){
+    return this.time1Numeros.indexOf(numero) > -1;
   }
 
 }
