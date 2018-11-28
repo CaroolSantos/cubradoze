@@ -52,7 +52,7 @@
   <ion-grid class="grid-time grid-time-azul">
       <ion-row class="numeros bottom vertical-align-content">
           <ion-col [ngClass]="{'marcado-azul': time2marcou(1)}">
-            <div>1</div>
+            <div *ngIf="!time2marcou(1)">1</div>
             <div *ngIf="time2marcou(1)">
               <ion-icon name="md-checkmark-circle-outline"></ion-icon>
             </div>
