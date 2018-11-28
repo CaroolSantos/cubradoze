@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import {Observable, Subscription} from 'rxjs/Rx';
 import { timer } from 'rxjs/observable/timer';
 import { NativeAudio } from '@ionic-native/native-audio';
@@ -25,7 +25,7 @@ export class RespostaPage {
   subscription:Subscription;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public nativeAudio: NativeAudio) {
+    public nativeAudio: NativeAudio, public alertCtrl: AlertController) {
   }
 
   ionViewDidLoad() {
@@ -51,6 +51,22 @@ export class RespostaPage {
     console.log(this.ticks);
     if(this.ticks == 60){
       console.log('ACABOU O TEMPO');
+      this.nativeAudio.play("error");
+      let alert = this.alertCtrl.create({
+        title: "Tempo esgotado!",
+        subTitle: "Seu tempo de resposta esgotou :( tente na próxima vez.",
+        buttons: [
+          {
+            text: "Ok",
+            handler: data => {
+              this.navCtrl.pop();
+            }
+          }
+      
+        ]
+      });
+      alert.present();
+
       this.nativeAudio.stop("ticking");
       this.subscription.unsubscribe();
     }
