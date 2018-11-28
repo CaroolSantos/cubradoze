@@ -9,6 +9,8 @@
     <Property Name="Time" Type="varchar" MaxLength="100" />
     <Property Name="DataRegistro" Type="datetime" />
     <Property Name="IdPartida" Type="int" Nullable="false" />
+    <Property Name="Tempo" Type="int" />
+    <Property Name="Acertou" Type="bit" />
   </EntityType>
   <EntityType Name="Partida">
     <Key>

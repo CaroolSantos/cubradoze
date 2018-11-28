@@ -18,6 +18,8 @@
     <Property Name="DataRegistro" Type="DateTime" Precision="3" />
     <Property Name="IdPartida" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Partida" Relationship="dbA2Model.FK_Jogada_IdPartida" FromRole="Jogada" ToRole="Partida" />
+    <Property Name="Tempo" Type="Int32" />
+    <Property Name="Acertou" Type="Boolean" />
   </EntityType>
   <EntityType Name="Partida">
     <Key>

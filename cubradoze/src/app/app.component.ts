@@ -19,6 +19,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
+      
+      this.nativeAudio.preloadSimple('intro', 'assets/sounds/intro.mp3').then(x=>{
+        console.log('preload audio success');
+      }, error=>{
+        console.error(error);
+      });
+      
       this.nativeAudio.preloadSimple('error', 'assets/sounds/error.wav').then(x=>{
         console.log('preload audio');
       }, error=>{
@@ -45,11 +52,6 @@ export class MyApp {
       });
 
       
-      this.nativeAudio.preloadSimple('final', 'assets/sounds/intro.mp3').then(x=>{
-        console.log('preload audio success');
-      }, error=>{
-        console.error(error);
-      });
 
 
     });

@@ -4,6 +4,8 @@
     <EntitySetMapping Name="Jogada">
       <EntityTypeMapping TypeName="dbA2Model.Jogada">
         <MappingFragment StoreEntitySet="Jogada">
+          <ScalarProperty Name="Acertou" ColumnName="Acertou" />
+          <ScalarProperty Name="Tempo" ColumnName="Tempo" />
           <ScalarProperty Name="IdPartida" ColumnName="IdPartida" />
           <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />
           <ScalarProperty Name="Time" ColumnName="Time" />
