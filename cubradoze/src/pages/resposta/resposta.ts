@@ -24,6 +24,11 @@ export class RespostaPage {
   ticks =0;
   subscription:Subscription;
   resultado:number;
+  number1:number;
+  number2:number;
+  number3:number;
+  operacao1:string;
+  operacao2:string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public nativeAudio: NativeAudio) {
@@ -66,6 +71,37 @@ export class RespostaPage {
 
   conferir(){
     console.log(this.resultado);
+    console.log(this.number1);
+    console.log(this.operacao1);
+    console.log(this.number2);
+    console.log(this.operacao2);
+    console.log(this.number3);
+
+    var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
+    var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
+
+    if(resultado2 == this.resultado){
+      this.nativeAudio.play("success");
+      console.log('ACERTOU');
+    }else{
+      this.nativeAudio.play("error");
+      console.log('ERROU');
+    }
+  }
+
+  calcula(operando1,operacao,operando2){
+    switch (operacao) {
+      case '+':
+        return operando1 + operando2;
+      case '-':
+        return operando1 - operando2;
+      case '*':
+        return operando1 * operando2;
+      case '/':
+        return operando1/operando2;
+      default:
+        break;
+    }
   }
 
 }

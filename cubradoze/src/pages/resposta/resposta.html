@@ -45,15 +45,15 @@
     <ion-list>
       <ion-row class="info-col">
         <ion-col>
-          <ion-select [(ngModel)]="number" class="tam-select" interface="popover">
-            <ion-option value="numero1">{{numero1}}</ion-option>
-            <ion-option value="numero2">{{numero2}}</ion-option>
-            <ion-option value="numero3">{{numero3}}</ion-option>
+          <ion-select [(ngModel)]="number1" class="tam-select" interface="popover">
+            <ion-option [value]="numero1">{{numero1}}</ion-option>
+            <ion-option [value]="numero2">{{numero2}}</ion-option>
+            <ion-option [value]="numero3">{{numero3}}</ion-option>
           </ion-select>
         </ion-col>
 
         <ion-col>
-            <ion-select class="class-inputSelect" [(ngModel)]="operacao" interface="popover">
+            <ion-select class="class-inputSelect" [(ngModel)]="operacao1" interface="popover">
                 <ion-option value="+">+</ion-option>
                 <ion-option value="-">-</ion-option>
                 <ion-option value="*">x</ion-option>
@@ -63,9 +63,9 @@
 
         <ion-col>
           <ion-select [(ngModel)]="number2" class="tam-select" interface="popover">
-            <ion-option value="numero1">{{numero1}}</ion-option>
-            <ion-option value="numero2">{{numero2}}</ion-option>
-            <ion-option value="numero3">{{numero3}}</ion-option>
+            <ion-option [value]="numero1">{{numero1}}</ion-option>
+            <ion-option [value]="numero2">{{numero2}}</ion-option>
+            <ion-option [value]="numero3">{{numero3}}</ion-option>
           </ion-select>
         </ion-col>
 
@@ -80,9 +80,9 @@
 
         <ion-col>
           <ion-select [(ngModel)]="number3" class="tam-select" interface="popover">
-            <ion-option value="numero1">{{numero1}}</ion-option>
-            <ion-option value="numero2">{{numero2}}</ion-option>
-            <ion-option value="numero3">{{numero3}}</ion-option>
+            <ion-option [value]="numero1">{{numero1}}</ion-option>
+            <ion-option [value]="numero2">{{numero2}}</ion-option>
+            <ion-option [value]="numero3">{{numero3}}</ion-option>
           </ion-select>
         </ion-col>
 
