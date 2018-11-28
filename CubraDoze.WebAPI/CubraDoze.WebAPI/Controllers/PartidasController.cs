@@ -14,6 +14,7 @@ using CubraDoze.WebAPI.Models;
 namespace CubraDoze.WebAPI.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
+    [RoutePrefix("api/Partidas")]
     public class PartidasController : ApiController
     {
         private dbA2Entities db = new dbA2Entities();
@@ -82,6 +83,26 @@ namespace CubraDoze.WebAPI.Controllers
             }
             partida.DataRegistro = DateTime.UtcNow.AddHours(-3);
             db.Partida.Add(partida);
+            db.SaveChanges();
+
+            return CreatedAtRoute("DefaultApi", new { id = partida.Id }, partida);
+        }
+
+        [HttpPost]
+        [Route("Finalizar")]
+        public IHttpActionResult PostPartida(FinalizarPartidaViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            Partida partida = db.Partida.Find(model.IdPartida);
+
+            partida.DataFinal = DateTime.UtcNow.AddHours(-3);
+            partida.Vencedor = model.TimeVencedor;
+
+            db.Entry(partida).State = EntityState.Modified;
             db.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = partida.Id }, partida);

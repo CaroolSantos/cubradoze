@@ -27,4 +27,13 @@ export class PartidaProvider {
       .map(res => res.json());
   }
 
+  finalizar(partida){
+  
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(this.urlBase + '/Partidas/Finalizar', JSON.stringify(partida), options)
+      .map(res => res.json());
+  }
+
 }

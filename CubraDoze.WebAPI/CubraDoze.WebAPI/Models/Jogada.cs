@@ -19,6 +19,8 @@ namespace CubraDoze.WebAPI.Models
         public string Time { get; set; }
         public Nullable<System.DateTime> DataRegistro { get; set; }
         public int IdPartida { get; set; }
+        public Nullable<int> Tempo { get; set; }
+        public Nullable<bool> Acertou { get; set; }
     
         public virtual Partida Partida { get; set; }
     }

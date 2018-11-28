@@ -3,6 +3,9 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {Observable, Subscription} from 'rxjs/Rx';
 import { timer } from 'rxjs/observable/timer';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { ConexaoProvider } from '../../providers/conexao/conexao';
+import { JogadaProvider } from '../../providers/jogada/jogada';
+import { Storage } from '@ionic/storage';
 /**
  * Generated class for the RespostaPage page.
  *
@@ -32,9 +35,13 @@ export class RespostaPage {
   time1Numeros:number[] = [];
   time2Numeros:number[] = [1];
   callback: any;
+  
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public nativeAudio: NativeAudio, public alertCtrl: AlertController) {
+    public nativeAudio: NativeAudio, public alertCtrl: AlertController,
+    public conexaoProv: ConexaoProvider,
+    public jogadaProv: JogadaProvider,
+    public storage: Storage) {
   }
 
   ionViewDidLoad() {
@@ -55,7 +62,7 @@ export class RespostaPage {
 
     let timer = Observable.timer(2000,1000);
     this.subscription = timer.subscribe(t => this.tickerFunc(t));
-    
+
     this.nativeAudio.loop("ticking");
   }
 
@@ -113,9 +120,30 @@ export class RespostaPage {
     if(resultado2 == this.resultado){
       this.nativeAudio.play("success");
       console.log('ACERTOU');
-      this.callback(this.resultado).then(() => { 
-        this.navCtrl.pop();
-      });
+
+      this.storage.get("IdPartida").then(idPartida=>{
+        if(idPartida){
+          let jogada = {
+            Acertou:1,
+            Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
+            Time:this.timeDaVez,
+            Tempo:this.ticks,
+            IdPartida:idPartida
+          }
+          this.jogadaProv.salvar(jogada).subscribe(x=>{
+            this.callback(this.resultado).then(() => { 
+              this.navCtrl.pop();
+            });
+          })
+        }else{
+          this.callback(this.resultado).then(() => { 
+            this.navCtrl.pop();
+          });
+        }
+      })
+
+      
+     
     }else{
       this.nativeAudio.play("error");
       console.log('ERROU');
@@ -153,9 +181,28 @@ export class RespostaPage {
   pular(){
     this.subscription.unsubscribe();
     this.nativeAudio.stop("ticking");
-    this.callback(-1).then(() => { 
-      this.navCtrl.pop();
-    });
+
+    this.storage.get("IdPartida").then(idPartida=>{
+      if(idPartida){
+        let jogada = {
+          Acertou:0,
+          Operacoes:`${this.numero1}|${this.numero2}|${this.numero3}`,
+          Time:this.timeDaVez,
+          Tempo:this.ticks,
+          IdPartida:idPartida
+        }
+        this.jogadaProv.salvar(jogada).subscribe(x=>{
+          this.callback(-1).then(() => { 
+            this.navCtrl.pop();
+          });
+        })
+      }else{
+        this.callback(-1).then(() => { 
+          this.navCtrl.pop();
+        });
+      }
+    })
+
   }
 
 }

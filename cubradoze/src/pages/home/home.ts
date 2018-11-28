@@ -84,11 +84,19 @@ export class HomePage {
       if(this.timeDaVez == 1){
         if(parseInt(_params) > -1){
           this.time1Numeros.push(parseInt(_params));
+          
+          if(this.time1Numeros.length == 12){
+            console.log('VENCEU O JOGO');
+          }
         }
         this.timeDaVez = 2;
       }else{
         if(parseInt(_params) > -1){
           this.time2Numeros.push(parseInt(_params));
+          
+          if(this.time1Numeros.length == 12){
+            console.log('VENCEU O JOGO');
+          }
         }
         this.timeDaVez = 1;
       }

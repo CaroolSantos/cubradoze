@@ -79,3 +79,6 @@ D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\obj\Debug\CubraDoze.Web
 D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\obj\Debug\CubraDoze.WebAPI.csproj.CopyComplete
 D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\obj\Debug\CubraDoze.WebAPI.dll
 D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\obj\Debug\CubraDoze.WebAPI.pdb
+D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\bin\System.Web.Cors.dll
+D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\bin\System.Web.Http.Cors.dll
+D:\A2\GitHub\cubradoze\CubraDoze.WebAPI\CubraDoze.WebAPI\bin\System.Web.Http.Cors.xml

@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="73ed058c9abc4358a6836c4eb5f334cc" Name="Diagram1">
         <EntityTypeShape EntityType="dbA2Model.Jogada" Width="1.5" PointX="3" PointY="0.875" />
-        <EntityTypeShape EntityType="dbA2Model.Partida" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="dbA2Model.Partida" Width="1.5" PointX="0.75" PointY="0.75" />
         <AssociationConnector Association="dbA2Model.FK_Jogada_IdPartida" />
       </Diagram>
     </edmx:Diagrams>

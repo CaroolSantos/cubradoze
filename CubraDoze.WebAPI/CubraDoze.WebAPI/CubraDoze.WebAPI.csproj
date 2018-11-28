@@ -217,6 +217,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CubraDozeEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\FinalizarPartidaViewModel.cs" />
     <Compile Include="Models\Jogada.cs">
       <DependentUpon>CubraDozeEntities.tt</DependentUpon>
     </Compile>
