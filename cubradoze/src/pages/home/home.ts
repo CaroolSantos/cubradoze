@@ -9,6 +9,7 @@ import { RespostaPage } from '../resposta/resposta';
 export class HomePage {
   myCount = 6;
   sorteando = false;
+  sorteado = false;
   numero1: number;
   numero2: number;
   numero3: number;
@@ -39,9 +40,14 @@ export class HomePage {
       if (this.myCount == 0) clearInterval(interval);
     }, 200)
 
+    this.sorteado = true;
     this.navCtrl.push(RespostaPage, {num1: this.numero1, num2: this.numero2, num3: this.numero3});
 
     
+  }
+
+  responder(){
+    //todo abrir modal
   }
 
 }

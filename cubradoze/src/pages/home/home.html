@@ -35,14 +35,16 @@
   <ion-grid class="grid-info"> 
     <ion-row class="vertical-align-content">
       <ion-col>
+        É a vez do time
         <span class="time-span">TIME A</span>
         
       </ion-col>
       <ion-col>
           <button ion-button round large (click)="sortear()" [hidden]="sorteando">Sortear números</button>
-          <ion-label [hidden]="!sorteando">{{numero1}}</ion-label>
-          <ion-label [hidden]="!sorteando">{{numero2}}</ion-label> 
-          <ion-label [hidden]="!sorteando">{{numero3}}</ion-label>  
+          <ion-label [hidden]="!sorteando || !sorteado">{{numero1}}</ion-label>
+          <ion-label [hidden]="!sorteando || !sorteado">{{numero2}}</ion-label> 
+          <ion-label [hidden]="!sorteando || !sorteado">{{numero3}}</ion-label>  
+          <button ion-button round large (click)="responder()" [hidden]="!sorteado">Continuar</button>
       </ion-col>
     </ion-row>
   </ion-grid>

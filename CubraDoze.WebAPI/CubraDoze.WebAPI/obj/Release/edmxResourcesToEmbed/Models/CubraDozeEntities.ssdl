@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbA2Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Jogada">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Operacoes" Type="varchar" MaxLength="100" />
+    <Property Name="Time" Type="varchar" MaxLength="100" />
+    <Property Name="DataRegistro" Type="datetime" />
+    <Property Name="IdPartida" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Partida">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Time1" Type="varchar" MaxLength="100" />
+    <Property Name="Time2" Type="varchar" MaxLength="100" />
+    <Property Name="DataRegistro" Type="datetime" />
+    <Property Name="Vencedor" Type="bit" />
+  </EntityType>
+  <Association Name="FK_Jogada_IdPartida">
+    <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
+    <End Role="Jogada" Type="Self.Jogada" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partida">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Jogada">
+        <PropertyRef Name="IdPartida" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="dbA2ModelStoreContainer">
+    <EntitySet Name="Jogada" EntityType="Self.Jogada" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partida" EntityType="Self.Partida" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Jogada_IdPartida" Association="Self.FK_Jogada_IdPartida">
+      <End Role="Partida" EntitySet="Partida" />
+      <End Role="Jogada" EntitySet="Jogada" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

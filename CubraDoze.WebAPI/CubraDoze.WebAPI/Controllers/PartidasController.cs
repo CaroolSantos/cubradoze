@@ -7,11 +7,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using CubraDoze.WebAPI.Models;
 
 namespace CubraDoze.WebAPI.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PartidasController : ApiController
     {
         private dbA2Entities db = new dbA2Entities();
