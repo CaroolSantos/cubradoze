@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angu
 import {Observable, Subscription} from 'rxjs/Rx';
 import { timer } from 'rxjs/observable/timer';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { RespostaErradaPage } from '../resposta-errada/resposta-errada';
 /**
  * Generated class for the RespostaPage page.
  *
@@ -103,17 +104,44 @@ export class RespostaPage {
     var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
     var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
 
-    if(resultado2 == this.resultado){
-      this.nativeAudio.play("success");
-      console.log('ACERTOU');
-    }else{
+    if(this.operacao1== "+" || this.operacao1=="-" && this.operacao2== "*" || this.operacao2=="/"){
       this.nativeAudio.play("error");
-      console.log('ERROU');
+      //this.navCtrl.push(RespostaErradaPage);
+      let alert = this.alertCtrl.create({
+        title: "Se liga na ordem das operações!",
+        subTitle: "Não é correto utilizar as operações de soma ou subtração ANTES das operações de multiplicação ou divisão.",
+        buttons: ["Tentar novamente"]
+      });
+      alert.present();
+    } else{
+      if(resultado2 == this.resultado){
+        this.nativeAudio.play("success");
+
+        let alert = this.alertCtrl.create({
+          title: "É ISSO AÍ!!",
+          subTitle: "Continue assim e você vai se dar bem.",
+          buttons: ["Ok"]
+        });
+        alert.present();
+        console.log('ACERTOU');
+      }else{
+        this.nativeAudio.play("error");
+
+        let alert = this.alertCtrl.create({
+          title: "Não foi dessa vez!",
+          subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;)",
+          buttons: ["Ok"]
+        });
+        alert.present();
+        console.log('ERROU');
+      }
+  
+      this.callback(this.resultado).then(() => { 
+        this.navCtrl.pop();
+      });
     }
 
-    this.callback(this.resultado).then(() => { 
-      this.navCtrl.pop();
-    });
+    
   }
 
   calcula(operando1,operacao,operando2){

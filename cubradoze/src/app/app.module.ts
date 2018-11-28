@@ -16,6 +16,8 @@ import { Network } from '@ionic-native/network';
 import { IonicStorageModule } from '@ionic/storage';
 import { NativeAudio } from '@ionic-native/native-audio';
 import { RespostaPage } from '../pages/resposta/resposta';
+import { RespostaErradaPage } from '../pages/resposta-errada/resposta-errada';
+import { RespostaCertaPage } from '../pages/resposta-certa/resposta-certa';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { RespostaPage } from '../pages/resposta/resposta';
     HomePage,
     IntroducaoPage,
     DefinicaoTimesPage,
-    RespostaPage
+    RespostaPage,
+    RespostaErradaPage,
+    RespostaCertaPage
   ],
   imports: [
     BrowserModule,
@@ -37,7 +41,9 @@ import { RespostaPage } from '../pages/resposta/resposta';
     HomePage,
     IntroducaoPage,
     DefinicaoTimesPage,
-    RespostaPage
+    RespostaPage,
+    RespostaErradaPage,
+    RespostaCertaPage
   ],
   providers: [
     StatusBar,
