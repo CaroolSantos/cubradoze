@@ -159,11 +159,26 @@ export class RespostaPage {
 }
 
   conferir(){
-    
+    this.showLoading('Aguarde...');
     var selecionados = [this.number1,this.number2,this.number3];
     var sorteados = [this.numero1,this.numero2,this.numero3];
 
-    if(this.arr_diff(selecionados,sorteados).length > 0){
+    var preenchimentocorreto = true;
+    if(selecionados.indexOf(this.numero1) > -1){
+      selecionados.splice(selecionados.indexOf(this.numero1),1);
+      if(selecionados.indexOf(this.numero2) > -1){
+        selecionados.splice(selecionados.indexOf(this.numero2),1);
+        if(selecionados.indexOf(this.numero3) == -1){
+          preenchimentocorreto = false;
+        }
+      }else{
+        preenchimentocorreto = false;
+      }
+    }else{
+      preenchimentocorreto = false;
+    }
+
+    if(!preenchimentocorreto){
       this.storage.get("IdPartida").then(idPartida=>{
         if(idPartida){
           let jogada = {
@@ -182,15 +197,16 @@ export class RespostaPage {
           alert.present();
           console.log('ERROU');
           
-          this.showLoading('Aguarde...');
+          
           this.jogadaProv.salvar(jogada).subscribe(x=>{
-            this.callback(-1).then(() => { 
-              this.loader.dismiss();
-              this.navCtrl.pop();
-            });
+            this.loader.dismiss();
+            // this.callback(-1).then(() => { 
+            //   this.loader.dismiss();
+            //   //this.navCtrl.pop();
+            // });
           })
         }else{
-          
+          this.loader.dismiss();
           let alert = this.alertCtrl.create({
             title: "Atenção!",
             subTitle: "Vocês não preencheram os números da forma correta.",
@@ -199,9 +215,9 @@ export class RespostaPage {
           alert.present();
           console.log('ERROU');
 
-          this.callback(-1).then(() => { 
-            this.navCtrl.pop();
-          });
+          // this.callback(-1).then(() => { 
+          //   this.navCtrl.pop();
+          // });
         }
       })
     }else{
@@ -294,7 +310,7 @@ export class RespostaPage {
               Tempo:this.ticks,
               IdPartida:idPartida
             }
-            this.loader.dismiss();
+            //this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
@@ -311,7 +327,7 @@ export class RespostaPage {
               });
             })
           }else{
-            this.loader.dismiss();
+            //this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
