@@ -81,7 +81,7 @@ export class RespostaPage {
 
       let alert = this.alertCtrl.create({
         title: "Tempo esgotado!",
-        subTitle: "Seu tempo de resposta esgotou :( tente na próxima vez.",
+        subTitle: "O tempo de resposta acabou :( tente na próxima vez.",
         buttons: [
           {
             text: "Ok",
@@ -130,6 +130,7 @@ export class RespostaPage {
       //this.navCtrl.push(RespostaErradaPage);
       let alert = this.alertCtrl.create({
         title: "Se liga na ordem das operações!",
+        cssClass: 'minha-classe', 
         subTitle: "Não é correto utilizar as operações de soma ou subtração ANTES das operações de multiplicação ou divisão.",
         buttons: ["Tentar novamente"]
       });
