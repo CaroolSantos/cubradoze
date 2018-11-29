@@ -102,9 +102,9 @@ export class RespostaPage {
     //console.log(this.ticks);
     if(this.ticks == 60){
       console.log('ACABOU O TEMPO');
-      this.nativeAudio.play("error");
       
       this.nativeAudio.stop("ticking");
+      this.nativeAudio.play("error");
       this.subscription.unsubscribe();
 
       let alert = this.alertCtrl.create({
@@ -180,6 +180,7 @@ export class RespostaPage {
 
     if(!preenchimentocorreto){
       this.storage.get("IdPartida").then(idPartida=>{
+        this.nativeAudio.play("error");
         if(idPartida){
           let jogada = {
             Acertou:0,
