@@ -34,8 +34,11 @@ export class RespostaPage {
   operacao1:string;
   operacao2:string;
   time1Numeros:number[] = [];
-  time2Numeros:number[] = [1];
+  time2Numeros:number[] = [];
   callback: any;
+  array1: number[] = [];
+  array2: number[] = [];
+  array3: number[] = [];
   loader;
   
 
@@ -60,7 +63,25 @@ export class RespostaPage {
       this.numero2 = this.getRandomInt(1,6);
       this.numero3 = this.getRandomInt(1,6);
 
-      if (this.myCount == 0) clearInterval(interval);
+      if (this.myCount == 0) {
+        // this.array1.push(this.numero1);
+        // this.array1.push(this.numero2);
+        // this.array1.push(this.numero3);
+
+        var array = [this.numero1,this.numero2,this.numero3];
+        this.array1 = array.filter(this.onlyUnique);
+        console.log(this.array1);
+
+        // this.array2.push(this.numero1);
+        // this.array2.push(this.numero2);
+        // this.array2.push(this.numero3);
+
+        // this.array3.push(this.numero1);
+        // this.array3.push(this.numero2);
+        // this.array3.push(this.numero3);
+
+        clearInterval(interval);
+      }
     }, 200)
 
     let timer = Observable.timer(2000,1000);
@@ -69,9 +90,16 @@ export class RespostaPage {
     this.nativeAudio.loop("ticking");
   }
 
+  onlyUnique(value, index, self) { 
+    return self.indexOf(value) === index;
+  }
+
+
+  
+
   tickerFunc(tick){
     this.ticks = tick
-    console.log(this.ticks);
+    //console.log(this.ticks);
     if(this.ticks == 60){
       console.log('ACABOU O TEMPO');
       this.nativeAudio.play("error");
@@ -107,15 +135,84 @@ export class RespostaPage {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  conferir(){ 
-    this.showLoading('Aguarde...');
-    console.log(this.resultado);
+  arr_diff (a1, a2) {
+
+    var a = [], diff = [];
+
+    for (var i = 0; i < a1.length; i++) {
+        a[a1[i]] = true;
+    }
+
+    for (var i = 0; i < a2.length; i++) {
+        if (a[a2[i]]) {
+            delete a[a2[i]];
+        } else {
+            a[a2[i]] = true;
+        }
+    }
+
+    for (var k in a) {
+        diff.push(k);
+    }
+
+    return diff;
+}
+
+  conferir(){
     
-    console.log(this.number1);
-    console.log(this.operacao1);
-    console.log(this.number2);
-    console.log(this.operacao2);
-    console.log(this.number3);
+    var selecionados = [this.number1,this.number2,this.number3];
+    var sorteados = [this.numero1,this.numero2,this.numero3];
+
+    if(this.arr_diff(selecionados,sorteados).length > 0){
+      this.storage.get("IdPartida").then(idPartida=>{
+        if(idPartida){
+          let jogada = {
+            Acertou:0,
+            Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
+            Time:this.timeDaVez,
+            Tempo:this.ticks,
+            IdPartida:idPartida
+          }
+          
+          let alert = this.alertCtrl.create({
+            title: "Atenção!",
+            subTitle: "Vocês não preencheram os números da forma correta.",
+            buttons: ["Ok"]
+          });
+          alert.present();
+          console.log('ERROU');
+          
+          this.showLoading('Aguarde...');
+          this.jogadaProv.salvar(jogada).subscribe(x=>{
+            this.callback(-1).then(() => { 
+              this.loader.dismiss();
+              this.navCtrl.pop();
+            });
+          })
+        }else{
+          
+          let alert = this.alertCtrl.create({
+            title: "Atenção!",
+            subTitle: "Vocês não preencheram os números da forma correta.",
+            buttons: ["Ok"]
+          });
+          alert.present();
+          console.log('ERROU');
+
+          this.callback(-1).then(() => { 
+            this.navCtrl.pop();
+          });
+        }
+      })
+    }else{
+
+    // console.log(this.resultado);
+    
+    // console.log(this.number1);
+    // console.log(this.operacao1);
+    // console.log(this.number2);
+    // console.log(this.operacao2);
+    // console.log(this.number3);
 
     var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
     var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
@@ -233,6 +330,8 @@ export class RespostaPage {
        
       }
     }
+    }
+
 
    
   }
