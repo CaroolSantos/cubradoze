@@ -32,6 +32,7 @@
     <Property Name="DataFinal" Type="DateTime" Precision="3" />
     <Property Name="Vencedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="Jogada" Relationship="dbA2Model.FK_Jogada_IdPartida" FromRole="Partida" ToRole="Jogada" />
+    <Property Name="Jogo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <Association Name="FK_Jogada_IdPartida">
     <End Type="dbA2Model.Partida" Role="Partida" Multiplicity="1" />

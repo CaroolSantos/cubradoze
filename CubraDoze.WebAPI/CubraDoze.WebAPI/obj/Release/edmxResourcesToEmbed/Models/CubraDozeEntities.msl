@@ -17,6 +17,7 @@
     <EntitySetMapping Name="Partida">
       <EntityTypeMapping TypeName="dbA2Model.Partida">
         <MappingFragment StoreEntitySet="Partida">
+          <ScalarProperty Name="Jogo" ColumnName="Jogo" />
           <ScalarProperty Name="Vencedor" ColumnName="Vencedor" />
           <ScalarProperty Name="DataFinal" ColumnName="DataFinal" />
           <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />

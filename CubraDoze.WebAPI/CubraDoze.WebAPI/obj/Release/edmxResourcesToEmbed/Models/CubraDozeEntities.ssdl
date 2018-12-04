@@ -22,6 +22,7 @@
     <Property Name="DataRegistro" Type="datetime" />
     <Property Name="DataFinal" Type="datetime" />
     <Property Name="Vencedor" Type="varchar" MaxLength="100" />
+    <Property Name="Jogo" Type="nvarchar(max)" />
   </EntityType>
   <Association Name="FK_Jogada_IdPartida">
     <End Role="Partida" Type="Self.Partida" Multiplicity="1" />

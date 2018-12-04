@@ -101,6 +101,7 @@ namespace CubraDoze.WebAPI.Controllers
 
             partida.DataFinal = DateTime.UtcNow.AddHours(-3);
             partida.Vencedor = model.TimeVencedor;
+            partida.Jogo = model.Jogo;
 
             db.Entry(partida).State = EntityState.Modified;
             db.SaveChanges();
