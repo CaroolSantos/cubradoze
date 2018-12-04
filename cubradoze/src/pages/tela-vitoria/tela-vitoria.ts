@@ -20,7 +20,7 @@ loader;
     public storage: Storage, public conexao: ConexaoProvider, 
     public partidaProvider: PartidaProvider, public loadingCtrl: LoadingController) {
   }
-
+ 
   ionViewDidLoad() {
     
     console.log('ionViewDidLoad TelaVitoriaPage');
@@ -29,15 +29,18 @@ loader;
     if (this.conexao.isOnline()) {
       this.showLoading('Salvando partida...');
       this.storage.get("IdPartida").then(IdPartida => {
-        this.storage.get("Jogo").then(Jogo => {
+        this.storage.get("jogo").then(Jogo => {
           let partida = { IdPartida: IdPartida, Jogo: Jogo, TimeVencedor: this.timeVencedor };
 
+          console.log('a partida ' + JSON.stringify(partida));
           this.partidaProvider.finalizar(partida)
             .subscribe(() => {
+              console.log('partida = ' + JSON.stringify(partida));
               this.storage.clear();
               this.loader.dismiss();
             }, 
             error => {
+              console.log('error ' + JSON.stringify(error));
               this.loader.dismiss();
             })
         })

@@ -34,6 +34,7 @@ export class DefinicaoTimesPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad DefinicaoTimesPage');
+    this.storage.clear();
   }
 
   acessarJogo(){

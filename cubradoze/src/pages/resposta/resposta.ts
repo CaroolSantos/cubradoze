@@ -300,6 +300,7 @@ export class RespostaPage {
                 handler: data => {
                   this.storage.get("jogo").then(jogo=>{
                     if(jogo){
+                      console.log('jogo =  ' + JSON.stringify(jogo));
                       var salvarjogada = jogo + ',' + JSON.stringify(jogada)
                       this.storage.set("jogo",salvarjogada).then(()=>{
                           this.callback(this.resultado).then(() => { 
