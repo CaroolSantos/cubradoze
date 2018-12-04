@@ -196,7 +196,8 @@ export class RespostaPage {
           let alert = this.alertCtrl.create({
             title: "Atenção!",
             subTitle: "Vocês não preencheram os números da forma correta.",
-            buttons: ["Ok"]
+            buttons: ["Ok"],
+            enableBackdropDismiss: false
           });
           alert.present();
           console.log('ERROU');
@@ -224,7 +225,8 @@ export class RespostaPage {
           let alert = this.alertCtrl.create({
             title: "Atenção!",
             subTitle: "Vocês não preencheram os números da forma correta.",
-            buttons: ["Ok"]
+            buttons: ["Ok"],
+            enableBackdropDismiss: false
           });
           alert.present();
           console.log('ERROU');
@@ -258,7 +260,8 @@ export class RespostaPage {
         title: "Se liga na ordem das operações!",
         cssClass: 'minha-classe', 
         subTitle: "Não é correto utilizar as operações de soma ou subtração ANTES das operações de multiplicação ou divisão.",
-        buttons: ["Tentar novamente"]
+        buttons: ["Tentar novamente"],
+        enableBackdropDismiss: false
       });
       alert.present();
       this.enablebtn = true;
@@ -303,7 +306,8 @@ export class RespostaPage {
                   //   });
                   // })
                 }
-              }]
+              }],
+              enableBackdropDismiss: false
             });
             alert.present();
             console.log('ACERTOU');
@@ -322,7 +326,8 @@ export class RespostaPage {
                     this.navCtrl.pop();
                   });
                 }
-              }]
+              }],
+            enableBackdropDismiss: false
             });
             alert.present();
             console.log('ACERTOU');
@@ -360,7 +365,8 @@ export class RespostaPage {
                     });
                   })
                 }
-            }]
+            }],
+            enableBackdropDismiss: false
             });
             alert.present();
             console.log('ERROU');
@@ -378,7 +384,8 @@ export class RespostaPage {
                     this.navCtrl.pop();
                   });
                 }
-              }]
+              }],
+              enableBackdropDismiss: false
             });
             alert.present();
             console.log('ERROU');
