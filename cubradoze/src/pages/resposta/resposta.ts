@@ -40,6 +40,7 @@ export class RespostaPage {
   array2: number[] = [];
   array3: number[] = [];
   loader;
+  enablebtn:boolean = true;
   
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
@@ -159,6 +160,8 @@ export class RespostaPage {
 }
 
   conferir(){
+    this.enablebtn = false;
+    
     this.showLoading('Aguarde...');
     var selecionados = [this.number1,this.number2,this.number3];
     var sorteados = [this.numero1,this.numero2,this.numero3];
@@ -197,15 +200,25 @@ export class RespostaPage {
           });
           alert.present();
           console.log('ERROU');
+          this.enablebtn = true;
           
-          
-          this.jogadaProv.salvar(jogada).subscribe(x=>{
+          this.storage.get("jogo").then(jogo=>{
             this.loader.dismiss();
-            // this.callback(-1).then(() => { 
-            //   this.loader.dismiss();
-            //   //this.navCtrl.pop();
-            // });
+            if(jogo){
+              var salvarjogada = jogo + ',' + JSON.stringify(jogada)
+              this.storage.set("jogo",salvarjogada).then(()=>{
+                
+              });
+            }
           })
+
+          // this.jogadaProv.salvar(jogada).subscribe(x=>{
+          //   this.loader.dismiss();
+          //   // this.callback(-1).then(() => { 
+          //   //   this.loader.dismiss();
+          //   //   //this.navCtrl.pop();
+          //   // });
+          // })
         }else{
           this.loader.dismiss();
           let alert = this.alertCtrl.create({
@@ -248,10 +261,11 @@ export class RespostaPage {
         buttons: ["Tentar novamente"]
       });
       alert.present();
+      this.enablebtn = true;
     } else{
 
       this.subscription.unsubscribe();
-    this.nativeAudio.stop("ticking");
+      this.nativeAudio.stop("ticking");
 
       if(resultado2 == this.resultado){
         this.nativeAudio.play("success");
@@ -273,11 +287,21 @@ export class RespostaPage {
               buttons: [{
                 text:"Ok",
                 handler: data => {
-                  this.jogadaProv.salvar(jogada).subscribe(x=>{
-                    this.callback(this.resultado).then(() => { 
-                      this.navCtrl.pop();
-                    });
+                  this.storage.get("jogo").then(jogo=>{
+                    if(jogo){
+                      var salvarjogada = jogo + ',' + JSON.stringify(jogada)
+                      this.storage.set("jogo",salvarjogada).then(()=>{
+                          this.callback(this.resultado).then(() => { 
+                            this.navCtrl.pop();
+                          });
+                      });
+                    }
                   })
+                  // this.jogadaProv.salvar(jogada).subscribe(x=>{
+                  //   this.callback(this.resultado).then(() => { 
+                  //     this.navCtrl.pop();
+                  //   });
+                  // })
                 }
               }]
             });
@@ -326,7 +350,7 @@ export class RespostaPage {
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
-              subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;)",
+              subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;). O resultado correto da expressão é " + resultado2,
               buttons: [{
                 text: "Ok",
                 handler: data => {
