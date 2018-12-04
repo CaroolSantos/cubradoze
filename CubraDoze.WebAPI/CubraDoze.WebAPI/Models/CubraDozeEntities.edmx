@@ -27,6 +27,7 @@
           <Property Name="DataRegistro" Type="datetime" />
           <Property Name="DataFinal" Type="datetime" />
           <Property Name="Vencedor" Type="varchar" MaxLength="100" />
+          <Property Name="Jogo" Type="nvarchar(max)" />
         </EntityType>
         <Association Name="FK_Jogada_IdPartida">
           <End Role="Partida" Type="Self.Partida" Multiplicity="1" />
@@ -84,6 +85,7 @@
           <Property Name="DataFinal" Type="DateTime" Precision="3" />
           <Property Name="Vencedor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Jogada" Relationship="dbA2Model.FK_Jogada_IdPartida" FromRole="Partida" ToRole="Jogada" />
+          <Property Name="Jogo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Jogada_IdPartida">
           <End Type="dbA2Model.Partida" Role="Partida" Multiplicity="1" />
@@ -119,6 +121,7 @@
           <EntitySetMapping Name="Partida">
             <EntityTypeMapping TypeName="dbA2Model.Partida">
               <MappingFragment StoreEntitySet="Partida">
+                <ScalarProperty Name="Jogo" ColumnName="Jogo" />
                 <ScalarProperty Name="Vencedor" ColumnName="Vencedor" />
                 <ScalarProperty Name="DataFinal" ColumnName="DataFinal" />
                 <ScalarProperty Name="DataRegistro" ColumnName="DataRegistro" />

@@ -9,5 +9,6 @@ namespace CubraDoze.WebAPI.Models
     {
         public int IdPartida { get; set; }
         public string TimeVencedor { get; set; }
+        public string Jogo { get; set; }
     }
 }

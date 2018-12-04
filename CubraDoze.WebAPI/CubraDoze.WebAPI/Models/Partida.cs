@@ -26,6 +26,7 @@ namespace CubraDoze.WebAPI.Models
         public Nullable<System.DateTime> DataRegistro { get; set; }
         public Nullable<System.DateTime> DataFinal { get; set; }
         public string Vencedor { get; set; }
+        public string Jogo { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Jogada> Jogada { get; set; }
