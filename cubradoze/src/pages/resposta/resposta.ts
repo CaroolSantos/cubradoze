@@ -234,8 +234,7 @@ export class RespostaPage {
     var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
     var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
 
-    this.subscription.unsubscribe();
-    this.nativeAudio.stop("ticking");
+    
     
 
     if((this.operacao1== "+" || this.operacao1=="-") && (this.operacao2== "*" || this.operacao2=="/")){
@@ -250,6 +249,9 @@ export class RespostaPage {
       });
       alert.present();
     } else{
+
+      this.subscription.unsubscribe();
+    this.nativeAudio.stop("ticking");
 
       if(resultado2 == this.resultado){
         this.nativeAudio.play("success");
@@ -268,30 +270,39 @@ export class RespostaPage {
             let alert = this.alertCtrl.create({
               title: "É ISSO AÍ!!",
               subTitle: "Continue assim e você vai se dar bem.",
-              buttons: ["Ok"]
+              buttons: [{
+                text:"Ok",
+                handler: data => {
+                  this.jogadaProv.salvar(jogada).subscribe(x=>{
+                    this.callback(this.resultado).then(() => { 
+                      this.navCtrl.pop();
+                    });
+                  })
+                }
+              }]
             });
             alert.present();
             console.log('ACERTOU');
 
-            this.jogadaProv.salvar(jogada).subscribe(x=>{
-              this.callback(this.resultado).then(() => { 
-                this.navCtrl.pop();
-              });
-            })
+
           }else{
             this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "É ISSO AÍ!!",
               subTitle: "Continue assim e você vai se dar bem.",
-              buttons: ["Ok"]
+              buttons: [{
+                text: "Ok",
+                handler: data => {
+                  this.callback(this.resultado).then(() => { 
+                    this.navCtrl.pop();
+                  });
+                }
+              }]
             });
             alert.present();
             console.log('ACERTOU');
 
-            this.callback(this.resultado).then(() => { 
-              this.navCtrl.pop();
-            });
           }
         })
 
@@ -316,31 +327,37 @@ export class RespostaPage {
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
               subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;)",
-              buttons: ["Ok"]
+              buttons: [{
+                text: "Ok",
+                handler: data => {
+                  this.jogadaProv.salvar(jogada).subscribe(x=>{
+                    this.callback(-1).then(() => { 
+                      this.navCtrl.pop();
+                    });
+                  })
+                }
+            }]
             });
             alert.present();
             console.log('ERROU');
-            
 
-            this.jogadaProv.salvar(jogada).subscribe(x=>{
-              this.callback(-1).then(() => { 
-                this.navCtrl.pop();
-              });
-            })
           }else{
             //this.loader.dismiss();
             
             let alert = this.alertCtrl.create({
               title: "Não foi dessa vez!",
               subTitle: "A operação que você realizou não estava correta. Fica ligado para não vacilar outra vez ;)",
-              buttons: ["Ok"]
+              buttons: [{
+                text: "Ok",
+                handler: data => {
+                  this.callback(-1).then(() => { 
+                    this.navCtrl.pop();
+                  });
+                }
+              }]
             });
             alert.present();
             console.log('ERROU');
-
-            this.callback(-1).then(() => { 
-              this.navCtrl.pop();
-            });
           }
         })
 
