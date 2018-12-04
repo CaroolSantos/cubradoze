@@ -354,10 +354,20 @@ export class RespostaPage {
               buttons: [{
                 text: "Ok",
                 handler: data => {
-                  this.jogadaProv.salvar(jogada).subscribe(x=>{
-                    this.callback(-1).then(() => { 
-                      this.navCtrl.pop();
-                    });
+                  // this.jogadaProv.salvar(jogada).subscribe(x=>{
+                  //   this.callback(-1).then(() => { 
+                  //     this.navCtrl.pop();
+                  //   });
+                  // })
+                  this.storage.get("jogo").then(jogo=>{
+                    if(jogo){
+                      var salvarjogada = jogo + ',' + JSON.stringify(jogada)
+                      this.storage.set("jogo",salvarjogada).then(()=>{
+                          this.callback(-1).then(() => { 
+                            this.navCtrl.pop();
+                          });
+                      });
+                    }
                   })
                 }
             }]
