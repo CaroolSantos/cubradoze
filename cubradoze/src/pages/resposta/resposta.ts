@@ -24,7 +24,7 @@ export class RespostaPage {
   numero2: number;
   numero3: number;
   myCount = 6;
-  timeDaVez:string;
+  timeDaVez:number;
   ticks =0;
   subscription:Subscription;
   resultado:number;
@@ -254,10 +254,6 @@ export class RespostaPage {
     // console.log(this.operacao2);
     // console.log(this.number3);
 
-    var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
-    var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
-
-    
     
 
     if((this.operacao1== "+" || this.operacao1=="-") && (this.operacao2== "*" || this.operacao2=="/")){
@@ -275,81 +271,103 @@ export class RespostaPage {
       this.enablebtn = true;
     } else{
 
-      this.subscription.unsubscribe();
-      this.nativeAudio.stop("ticking");
-
+      var resultado1 = this.calcula(this.number1,this.operacao1,this.number2);
+      var resultado2 = this.calcula(resultado1,this.operacao2,this.number3);
+  
+      
+     
       if(resultado2 == this.resultado){
-        this.nativeAudio.play("success");
-
-        this.storage.get("IdPartida").then(idPartida=>{
-          if(idPartida){
-            let jogada = {
-              Acertou:1,
-              Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
-              Time:this.timeDaVez,
-              Tempo:this.ticks,
-              IdPartida:idPartida
-            }
+        console.log('time da vez',this.timeDaVez,this.time1Numeros,this.time2Numeros,this.resultado,this.time1Numeros.indexOf(resultado2),this.time2Numeros.indexOf(resultado2));
+        //checar se número já não está preenchido
+        if((this.timeDaVez == 1 && (this.time1Numeros.indexOf(resultado2) > -1)) || (this.timeDaVez == 2 && (this.time2Numeros.indexOf(resultado2) > -1))){
+          
             this.loader.dismiss();
-            
             let alert = this.alertCtrl.create({
-              title: "É ISSO AÍ!!",
-              subTitle: "Continue assim e você vai se dar bem.",
-              buttons: [{
-                text:"Ok",
-                handler: data => {
-                  this.storage.get("jogo").then(jogo=>{
-                    if(jogo){
-                      console.log('jogo =  ' + JSON.stringify(jogo));
-                      var salvarjogada = jogo + ',' + JSON.stringify(jogada)
-                      this.storage.set("jogo",salvarjogada).then(()=>{
-                          this.callback(this.resultado).then(() => { 
-                            this.navCtrl.pop();
-                          });
-                      });
-                    }else{
-                      var salvarjogada = JSON.stringify(jogada)
-                      this.storage.set("jogo",salvarjogada).then(()=>{
-                          this.callback(this.resultado).then(() => { 
-                            this.navCtrl.pop();
-                          });
-                      });
-                    }
-                  })
-                  // this.jogadaProv.salvar(jogada).subscribe(x=>{
-                  //   this.callback(this.resultado).then(() => { 
-                  //     this.navCtrl.pop();
-                  //   });
-                  // })
-                }
-              }],
+              title: "Número já preenchido!",
+              cssClass: 'minha-classe', 
+              subTitle: "O número já está preenchido, tente fazer uma operação com um resultado diferente.",
+              buttons: ["Tentar novamente"],
               enableBackdropDismiss: false
             });
             alert.present();
-            console.log('ACERTOU');
+            this.enablebtn = true;
+        }else{
+          this.subscription.unsubscribe();
+          this.nativeAudio.stop("ticking");
+    
+          this.nativeAudio.play("success");
 
+          this.storage.get("IdPartida").then(idPartida=>{
+            if(idPartida){
+              let jogada = {
+                Acertou:1,
+                Operacoes:`${this.number1}${this.operacao1}${this.number2}${this.operacao2}${this.number3}=${this.resultado}`,
+                Time:this.timeDaVez,
+                Tempo:this.ticks,
+                IdPartida:idPartida
+              }
+              this.loader.dismiss();
+              
+              let alert = this.alertCtrl.create({
+                title: "É ISSO AÍ!",
+                subTitle: "Continue assim e você vai se dar bem.",
+                buttons: [{
+                  text:"Ok",
+                  handler: data => {
+                    this.storage.get("jogo").then(jogo=>{
+                      if(jogo){
+                        console.log('jogo =  ' + JSON.stringify(jogo));
+                        var salvarjogada = jogo + ',' + JSON.stringify(jogada)
+                        this.storage.set("jogo",salvarjogada).then(()=>{
+                            this.callback(this.resultado).then(() => { 
+                              this.navCtrl.pop();
+                            });
+                        });
+                      }else{
+                        var salvarjogada = JSON.stringify(jogada)
+                        this.storage.set("jogo",salvarjogada).then(()=>{
+                            this.callback(this.resultado).then(() => { 
+                              this.navCtrl.pop();
+                            });
+                        });
+                      }
+                    })
+                    // this.jogadaProv.salvar(jogada).subscribe(x=>{
+                    //   this.callback(this.resultado).then(() => { 
+                    //     this.navCtrl.pop();
+                    //   });
+                    // })
+                  }
+                }],
+                enableBackdropDismiss: false
+              });
+              alert.present();
+              console.log('ACERTOU');
+  
+  
+            }else{
+              this.loader.dismiss();
+              
+              let alert = this.alertCtrl.create({
+                title: "É ISSO AÍ!",
+                subTitle: "Continue assim e você vai se dar bem.",
+                buttons: [{
+                  text: "Ok",
+                  handler: data => {
+                    this.callback(this.resultado).then(() => { 
+                      this.navCtrl.pop();
+                    });
+                  }
+                }],
+              enableBackdropDismiss: false
+              });
+              alert.present();
+              console.log('ACERTOU');
+  
+            }
+          })
+        }
 
-          }else{
-            this.loader.dismiss();
-            
-            let alert = this.alertCtrl.create({
-              title: "É ISSO AÍ!!",
-              subTitle: "Continue assim e você vai se dar bem.",
-              buttons: [{
-                text: "Ok",
-                handler: data => {
-                  this.callback(this.resultado).then(() => { 
-                    this.navCtrl.pop();
-                  });
-                }
-              }],
-            enableBackdropDismiss: false
-            });
-            alert.present();
-            console.log('ACERTOU');
-
-          }
-        })
 
         
        

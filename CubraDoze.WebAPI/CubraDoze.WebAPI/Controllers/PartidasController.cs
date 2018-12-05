@@ -106,7 +106,7 @@ namespace CubraDoze.WebAPI.Controllers
             db.Entry(partida).State = EntityState.Modified;
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = partida.Id }, partida);
+            return Ok(partida.Id);
         }
 
         // DELETE: api/Partidas/5
